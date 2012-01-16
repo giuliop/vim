@@ -124,7 +124,9 @@ endif
 
 " leader shortcuts (also SPACE already mapped above)
     " to reload the the current file (e.g., the vimrc)
-nnoremap <leader>r :so<space>%<CR>
+    " nnoremap <leader>r :so<space>%<CR>
+    " toggle rainbow parenthesis
+nnoremap <leader>r :RainbowParenthesesToggle<CR>
     " to save and open current file
 nnoremap <leader>o :w<CR>:!open<space>%<CR>
     " to open new vertical split with new file
