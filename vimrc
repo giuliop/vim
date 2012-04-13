@@ -8,8 +8,6 @@ endif
 "Lines inspired from http://stevelosh.com/blog/2010/09/coming-home-to-vim/"
 call pathogen#infect()
 
-filetype plugin indent on
-
 set nocompatible
 
 set modelines=0
@@ -47,13 +45,10 @@ vnoremap <tab> %
 
 set wrap
 set textwidth=79
-set formatoptions=qrn1
+set formatoptions=qn1
+
 set colorcolumn=80
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -66,14 +61,21 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap ; :
-inoremap kj <ESC>
+inoremap jh <ESC>
 
 set splitright
 
+" move around with ctrl + movement key
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" resize with shift + movement key 
+nnoremap <left> <C-w>2>
+nnoremap <down> <C-w>2+
+nnoremap <up> <C-w>2-
+nnoremap <right> <C-w>2<
 
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
@@ -83,25 +85,30 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-" Turn on syntax coloring and choose color scheme":
-syntax enable
-
 if ! has("gui_running") 
     set t_Co=256 
 endif 
-" feel free to choose :set background=light for a different style 
+
+" Turn on syntax coloring and choose color scheme":
+syntax enable
 set background=dark 
-colors zenburn 
+colorscheme zenburn 
 
 if has('gui_running') && has('Mac')
   set guifont=Inconsolata:h16.00
 endif
 
+" set colorcolumn color
+hi ColorColumn ctermbg=darkgrey guibg=darkgrey
+
 " Toggle line numbers and fold column for easy copying with 'F3':
 nnoremap <F3> :setlocal nonumber!<CR>:set foldcolumn=0<CR>
 
 " Toggle relative and absolute numbering with 'F4':
-:nnoremap <F4> :setlocal <c-r>=&number ? "relativenumber" : "number"<cr><cr>
+nnoremap <F4> :setlocal <c-r>=&number ? "relativenumber" : "number"<cr><cr>
+
+" Toggle TagBar
+nmap <F8> :TagbarToggle<CR>
 
 " allow the . to execute once for each line of a visual selection
 vnoremap . :normal .<CR>
@@ -109,24 +116,18 @@ vnoremap . :normal .<CR>
 " Toggle NERDTree on and off with 'F2':
 map <F2> :NERDTreeToggle<CR>
 
-" For when you forget to sudo.. Really Write the file.
-cmap w!! w !sudo tee % >/dev/null<CR><CR>
-
 " For python auto-completion
 ""let g:pydiction_location = '~/.vim/bundle/pydiction-1.2/complete-dict'
-
-" When vimrc is edited, reload it
-if has('macunix')
-    autocmd! bufwritepost .vimrc source ~/.vimrc
-elseif has('unix')
-    autocmd! bufwritepost vimrc source /etc/vimrc
-endif
 
 " leader shortcuts (also SPACE already mapped above)
     " to reload the the current file (e.g., the vimrc)
     " nnoremap <leader>r :so<space>%<CR>
+" For when you forget to sudo.. Really Write the file.
+noremap <leader>ww :w !sudo tee % > /dev/null<CR>
     " toggle rainbow parenthesis
 nnoremap <leader>r :RainbowParenthesesToggle<CR>
+nnoremap <leader>[[ :RainbowParenthesesLoadSquare<CR>
+nnoremap <leader>[ :RainbowParenthesesLoadBraces<CR>
     " to save and open current file
 nnoremap <leader>o :w<CR>:!open<space>%<CR>
     " to open new vertical split with new file
@@ -137,15 +138,15 @@ if has('unix') && ! has('macunix')
 else
     map <leader>e :e! ~/.vimrc<cr>
 endif
-    " add blank lines in normal mode above or below current line
-nnoremap <leader>- :put!=''<CR>
-nnoremap <leader>= :put=''<CR>
-inoremap <leader>- <ESC>:put!=''<CR>k$i
-inoremap <leader>= <ESC>:put=''<CR>k$i
+    " add blank lines above or below current line
+nnoremap <leader>- m`:put!=''<CR>``
+nnoremap <leader>= m`:put=''<CR>``
+inoremap <leader>- <ESC>m`:put!=''<CR>``a
+inoremap <leader>= <ESC>m`:put=''<CR>``a
     " close all files without saving and save global session
-nnoremap <leader>ww :qa!<CR>
+"nnoremap <leader>ww :qa!<CR>
     "save and close all files and save global session
-nnoremap <leader>q :mksession! ~/.vim/Session.vim<CR>:wqa<CR>
+"nnoremap <leader>q :mksession! ~/.vim/Session.vim<CR>:wqa<CR>
     " leader t,b used by command-t
     " reselect text just pasted
 nnoremap <leader>p V`]
@@ -155,17 +156,48 @@ nnoremap <leader>v <C-w>v<C-w>l
 nnoremap <leader>s <C-w>s<C-w>l
 
 " commands to run at startup
-"" let NERDTreeShowHidden=1
-"" let NERDTreeShowBookmarks=1
-"" au VimEnter * :NERDTreeToggle
+" let NERDTreeShowHidden=1
+" let NERDTreeShowBookmarks=1
+" au VimEnter * :NERDTreeToggle
 
-function! RestoreSession()
-  if has ('macunix') && argc() == 0 "vim called without arguments on Mac
-    execute 'source ~/.vim/Session.vim'
-  end
-endfunction
-autocmd VimEnter * call RestoreSession()
+"function! RestoreSession()
+  "if has ('macunix') && argc() == 0 "vim called without arguments on Mac
+    "execute 'source ~/.vim/Session.vim'
+  "end
+"endfunction
+"autocmd VimEnter * call RestoreSession()
 
 " if html file set jinja syntax
-:au BufRead *.html :set syntax=jinja
+":au BufRead *.html :set syntax=jinja
 
+" Enable file type detection
+filetype indent plugin on
+
+" Automatic commands
+if has("autocmd")
+    " disable automatic commenting of lines after comments
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    " Treat .json files as .js
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " When vimrc is edited, reload it
+    if has('macunix')
+        autocmd! bufwritepost .vimrc source ~/.vimrc
+    elseif has('unix')
+        autocmd! bufwritepost vimrc source /etc/vimrc
+    endif
+    " enable javascript folding
+    function! JavaScriptFold() 
+        setl foldmethod=syntax
+        setl foldlevel=1
+        syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+        function! FoldText()
+            return substitute(getline(v:foldstart), '{.*', '{...}', '')
+        endfunction
+        setl foldtext=FoldText()
+    endfunction
+    au FileType javascript call JavaScriptFold()
+    au FileType javascript setl fen
+    autocmd BufWinLeave *.js mkview "to save folding on exit
+    autocmd BufWinEnter *.js silent loadview "to load folding on entry
+endif
