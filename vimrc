@@ -1,7 +1,12 @@
+" Determine OS
+let os=substitute(system('uname'), '\n', '', '')
+if os == 'Darwin' || os == 'Mac'
+    let os='Mac'
+endif
 
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages for Arch Linux
-if has('unix') && ! has('macunix')
+if os == 'Linux'
     runtime! archlinux.vim
 endif
 
@@ -94,7 +99,7 @@ syntax enable
 set background=dark 
 colorscheme zenburn 
 
-if has('gui_running') && has('Mac')
+if has('gui_running') && os == 'Mac'
   set guifont=Inconsolata:h16.00
 endif
 
@@ -133,7 +138,7 @@ nnoremap <leader>o :w<CR>:!open<space>%<CR>
     " to open new vertical split with new file
 nnoremap <leader>n :vne<CR>
     " Fast editing of the .vimrc
-if has('unix') && ! has('macunix')
+if os == 'Linux'
     map <leader>e :e! /etc/vimrc<cr>
 else
     map <leader>e :e! ~/.vimrc<cr>
@@ -180,9 +185,9 @@ if has("autocmd")
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     " When vimrc is edited, reload it
-    if has('macunix')
+    if os == 'Mac'
         autocmd! bufwritepost .vimrc source ~/.vimrc
-    elseif has('unix')
+    elseif os == 'Linux'
         autocmd! bufwritepost vimrc source /etc/vimrc
     endif
     " enable javascript folding
