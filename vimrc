@@ -106,23 +106,20 @@ endif
 " set colorcolumn color
 hi ColorColumn ctermbg=darkgrey guibg=darkgrey
 
-" Toggle line numbers and fold column for easy copying with 'F3':
-nnoremap <F3> :setlocal nonumber!<CR>:set foldcolumn=0<CR>
+" Toggle line numbers and fold column for easy copying
+nnoremap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
 
-" Toggle relative and absolute numbering with 'F4':
-nnoremap <F4> :setlocal <c-r>=&number ? "relativenumber" : "number"<cr><cr>
+" Toggle relative and absolute numbering
+nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<cr><cr>
 
 " Toggle TagBar
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>8 :TagbarToggle<CR>
 
 " allow the . to execute once for each line of a visual selection
 vnoremap . :normal .<CR>
 
-" Toggle NERDTree on and off with 'F2':
-map <F2> :NERDTreeToggle<CR>
-
-" For python auto-completion
-""let g:pydiction_location = '~/.vim/bundle/pydiction-1.2/complete-dict'
+" Toggle NERDTree on and off
+map <leader>2 :NERDTreeToggle<CR>
 
 " leader shortcuts (also SPACE already mapped above)
     " to reload the the current file (e.g., the vimrc)
@@ -173,7 +170,7 @@ nnoremap <leader>s <C-w>s<C-w>l
 "autocmd VimEnter * call RestoreSession()
 
 " if html file set jinja syntax
-":au BufRead *.html :set syntax=jinja
+:au BufRead *.html :set syntax=jinja
 
 " Enable file type detection
 filetype indent plugin on
