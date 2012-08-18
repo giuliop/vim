@@ -66,7 +66,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap ; :
-inoremap jh <ESC>
+inoremap kj <ESC>
 
 set splitright
 
@@ -85,7 +85,7 @@ nnoremap <right> <C-w>2<
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
 " Convert tab to spaces and set tab to 4 spaces and set identation to 4 spaces"
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
@@ -102,6 +102,9 @@ colorscheme zenburn
 if has('gui_running') && os == 'Mac'
   set guifont=Inconsolata:h16.00
 endif
+
+" use space to replay macro 'q' (qq / q to start/stop recording)
+:nnoremap <Space> @q
 
 " set colorcolumn color
 hi ColorColumn ctermbg=darkgrey guibg=darkgrey
@@ -158,6 +161,8 @@ nnoremap <leader>v <C-w>v<C-w>l
 nnoremap <leader>s <C-w>s<C-w>l
 
 " commands to run at startup
+" remap sparkup next tag command to avoid conflict with any word completion
+let g:sparkupNextMapping = '<C-x>'
 " let NERDTreeShowHidden=1
 " let NERDTreeShowBookmarks=1
 " au VimEnter * :NERDTreeToggle
@@ -169,9 +174,6 @@ nnoremap <leader>s <C-w>s<C-w>l
 "endfunction
 "autocmd VimEnter * call RestoreSession()
 
-" if html file set jinja syntax
-:au BufRead *.html :set syntax=jinja
-
 " Enable file type detection
 filetype indent plugin on
 
@@ -181,6 +183,10 @@ if has("autocmd")
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " if html file set jinja syntax
+    :au BufRead *.html :set syntax=jinja
+    " HTML tabs to two spaces and no wrap
+    autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 nowrap
     " When vimrc is edited, reload it
     if os == 'Mac'
         autocmd! bufwritepost .vimrc source ~/.vimrc
