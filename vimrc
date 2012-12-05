@@ -44,7 +44,8 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader>, :noh<cr>
+inoremap <leader>, <ESC>:noh<cr>a
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -82,6 +83,13 @@ nnoremap <down> <C-w>2+
 nnoremap <up> <C-w>2-
 nnoremap <right> <C-w>2<
 
+" Use Ctrl-W to delete the previous word, Ctrl-U to delete a line, and Ctrl-Y 
+" to paste what you've deleted back, all while remaining in insert mode
+inoremap <silent> <C-W> <C-\><C-O>db
+inoremap <silent> <C-U> <C-\><C-O>d0
+inoremap <silent> <C-Y> <C-R>"
+
+" Set status bar
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
 " Convert tab to spaces and set tab to 4 spaces and set identation to 4 spaces"
@@ -97,7 +105,8 @@ endif
 " Turn on syntax coloring and choose color scheme":
 syntax enable
 set background=dark 
-colorscheme zenburn 
+"colorscheme zenburn 
+colorscheme Tomorrow-Night
 
 if has('gui_running') && os == 'Mac'
   set guifont=Inconsolata:h16.00
@@ -159,6 +168,15 @@ nnoremap <leader>p V`]
 nnoremap <leader>v <C-w>v<C-w>l
     " open horizontal split
 nnoremap <leader>s <C-w>s<C-w>l
+" Ctrl+s to save
+map <C-s> :w<cr>
+imap <C-s> <ESC>:w<cr>a
+
+" Ctrl+q to quit, hold shift to discard changes
+map <C-q> :q<cr>
+imap <C-q> <ESC>:q<cr>
+map <C-S-q> :q!<cr>
+imap <C-S-q> <ESC>:q!<cr>
 
 " commands to run at startup
 " remap sparkup next tag command to avoid conflict with any word completion
