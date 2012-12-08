@@ -1,0 +1,58 @@
+" Bundles {
+    " Vundle to rule them all
+            Bundle 'gmarik/vundle'
+
+    " General
+            Bundle 'scrooloose/nerdtree'
+            Bundle 'MarcWeber/vim-addon-mw-utils'
+            Bundle 'tomtom/tlib_vim'
+            Bundle 'altercation/vim-colors-solarized'
+            Bundle 'tpope/vim-surround'
+            Bundle 'kien/ctrlp.vim'
+            Bundle 'Lokaltog/vim-powerline'
+            Bundle 'Lokaltog/vim-easymotion'
+            Bundle 'godlygeek/csapprox'
+            Bundle 'flazz/vim-colorschemes'
+            Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
+            Bundle 'vim-scripts/restore_view.vim'
+            Bundle 'tpope/vim-abolish.git'
+
+    " General Programming
+            " Pick one of the checksyntax, jslint, or syntastic
+            Bundle 'scrooloose/syntastic'
+            Bundle 'tpope/vim-fugitive'
+            Bundle 'scrooloose/nerdcommenter'
+            Bundle 'godlygeek/tabular'
+            if executable('ctags')
+                Bundle 'majutsushi/tagbar'
+            endif
+
+    " Snippets & AutoComplete
+            Bundle 'garbas/vim-snipmate'
+            Bundle 'honza/snipmate-snippets'
+            " Source support_function.vim to support snipmate-snippets.
+            if filereadable(expand("~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim"))
+                source ~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim
+            endif
+            Bundle 'Shougo/neocomplcache'
+            Bundle 'Shougo/neosnippet'
+            Bundle 'honza/snipmate-snippets'
+
+    " Python
+            " Pick either python-mode or pyflakes & pydoc
+            Bundle 'klen/python-mode'
+            Bundle 'python.vim'
+            Bundle 'python_match.vim'
+            Bundle 'pythoncomplete'
+
+    " Javascript
+            Bundle 'leshill/vim-json'
+            Bundle 'groenewege/vim-less'
+            Bundle 'pangloss/vim-javascript'
+            Bundle 'briancollins/vim-jst'
+
+    " HTML
+            Bundle 'amirh/HTML-AutoCloseTag'
+            Bundle 'hail2u/vim-css3-syntax'
+
+    " Misc
