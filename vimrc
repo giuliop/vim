@@ -31,7 +31,7 @@
 " https://github.com/spf13/spf13-vim/blob/3.0/.vimrc
 
 " Formatting
-    set nowrap                      " wrap long lines
+    set wrap                        " wrap long lines
     set autoindent                  " indent at the same level of the previous line
     set shiftwidth=4                " use indents of 4 spaces
     set expandtab                   " tabs are spaces, not tabs
@@ -45,8 +45,8 @@
     filetype plugin indent on       " Automatically detect file types.
     syntax on                       " syntax highlighting
     scriptencoding utf-8
-    set mouse=a                     " automatically enable mouse usage
-    set mousehide                   " hide the mouse cursor while typing
+    "set mouse=a                     " automatically enable mouse usage
+    "set mousehide                   " hide the mouse cursor while typing
 
     " set autowrite                   " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
@@ -56,7 +56,7 @@
     " set spell                       " spell checking on
     set hidden                      " allow buffer switching without saving
 
-    " Setting up the directories {
+    " Setting up the directories
     set backup                      " backups are nice ...
     if has('persistent_undo')
         set undofile                "so is persistent undo ...
@@ -64,22 +64,8 @@
         set undoreload=10000        "maximum number lines to save for undo on a buffer reload
     endif
 
-" Graphics
-    set background=dark             " assume a dark background
 
-    if ! has("gui_running") 
-        set t_Co=256 
-        " set term=$TERM              " Make arrow and other keys work
-    endif
-
-    if has('gui_running') && os == 'Mac'
-        set guifont=Inconsolata:h16.00
-    endif
-
-    colorscheme Tomorrow-Night      " choose color scheme
-
-
-" Vim UI {
+" Vim UI
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
@@ -96,11 +82,14 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\        " Filename
         set statusline+=%w%h%m%r    " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
+        "set statusline+=%{fugitive#statusline()} " Git Hotness
         set statusline+=\ [%{&ff}/%Y]            " filetype
         set statusline+=\ [%{getcwd()}]          " current dir
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    endif
+endif
 
     set relativenumber              " instead of absolute numbers
     set backspace=indent,eol,start  " backspace for dummies
@@ -124,10 +113,20 @@
     set splitright
     " set colorcolumn color
     hi ColorColumn ctermbg=darkgrey guibg=darkgrey
-    " set wrap
-    " set textwidth=79
     " set formatoptions=qn1
 
+" Graphics
+    if ! has("gui_running") 
+        set term=screen-256color
+        set t_Co=256
+        "set term=$TERM              " Make arrow and other keys work
+    endif
+
+    colorscheme Tomorrow-Night
+
+    if has('gui_running') && os == 'Mac'
+        set guifont=Inconsolata:h16.00
+    endif
 
 " Key (re)Mappings
 
@@ -138,8 +137,8 @@
     vnoremap / /\v
 
     " comma to de-highlight search
-    nnoremap <leader>, :noh<cr>
-    inoremap <leader>, <ESC>:noh<cr>a
+    nnoremap <leader>m :noh<cr>
+    inoremap <leader>m <ESC>:noh<cr>a
 
     " Tab to move around bracket pairs
     nnoremap <tab> %
@@ -236,10 +235,10 @@
     map <leader>e :e! ~/.vimrc<cr>
 
     " add blank lines above or below current line
-    nnoremap <leader>- m`:put!=''<CR>``
-    nnoremap <leader>= m`:put=''<CR>``
-    inoremap <leader>- <ESC>m`:put!=''<CR>``a
-    inoremap <leader>= <ESC>m`:put=''<CR>``a
+    "nnoremap <leader>- m`:put!=''<CR>``
+    "nnoremap <leader>= m`:put=''<CR>``
+    "inoremap <leader>- <ESC>m`:put!=''<CR>``a
+    "inoremap <leader>= <ESC>m`:put=''<CR>``a
 
     " close all files without saving and save global session
     "nnoremap <leader>ww :qa!<CR>
@@ -257,7 +256,7 @@
 
     " Ctrl+s to save
     map <C-s> :w<cr>
-    imap <C-s> <ESC>:w<cr>a
+    imap <C-s> <ESC>:w<cr>
 
     " Ctrl+q to quit, hold shift to discard changes
     map <C-q> :q<cr>
@@ -268,9 +267,12 @@
 " Plugins
 
     " Ctags
-    set tags=./tags;/,~/.vimtags
+        set tags=./tags;/,~/.vimtags
 
-    " OmniComplete {
+    " Syntastic
+         let g:syntastic_javascript_checker='jshint'
+
+    " OmniComplete
         if has("autocmd") && exists("+omnifunc")
             autocmd Filetype *
                 \if &omnifunc == "" |
@@ -294,12 +296,7 @@
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
         set completeopt=menu,preview,longest
 
-    " AutoCloseTag {
-        " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-
-    " NerdTree {
+    " NerdTree
         map <leader>2 :NERDTreeToggle<CR>
         map <leader>1 :NERDTreeFind<CR>
 
@@ -308,7 +305,7 @@
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowHidden=1
 
-    " Tabularize {
+    " Tabularize
         nmap <Leader>a= :Tabularize /=<CR>
         vmap <Leader>a= :Tabularize /=<CR>
         nmap <Leader>a: :Tabularize /:<CR>
@@ -319,30 +316,25 @@
         vmap <Leader>a, :Tabularize /,<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-     " }
 
-     " Session List {
+     " Session List
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
-     " }
 
-     " Buffer explorer {
+     " Buffer explorer
         nmap <leader>b :BufExplorer<CR>
-     " }
 
-     " JSON {
+     " JSON
         nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-     " }
 
-     " PyMode {
+     " PyMode
         let g:pymode_lint_checker = "pyflakes"
         let g:pymode_utils_whitespaces = 0
-     " }
 
-     " ctrlp {
+     " ctrlp
         let g:ctrlp_working_path_mode = 2
-        nnoremap <silent> <C-t> :CtrlPMRU<CR>
+        nnoremap <silent> <C-t> :CtrlPmixed<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$' }
@@ -354,29 +346,25 @@
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
-     "}
 
-     " TagBar {
+     " TagBar
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
-     "}
 
-     " PythonMode {
+     " PythonMode
      " Disable if python support not present
         if !has('python')
            let g:pymode = 1
         endif
-     " }
 
-     " Fugitive {
+     " Fugitive
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
-     "}
 
-     " neocomplcache {
+     " neocomplcache
         let g:acp_enableAtStartup = 0
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_enable_camel_case_completion = 1
@@ -433,16 +421,6 @@
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-        " Enable heavy omni completion.
-        "if !exists('g:neocomplcache_omni_patterns')
-            "let g:neocomplcache_omni_patterns = {}
-        "endif
-        "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        "let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-        "let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-        "let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 
@@ -453,6 +431,9 @@
 
 
 " Automatic commands
+
+        " always switch to the current file directory.
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
     if has("autocmd")
         " disable automatic commenting of lines after comments

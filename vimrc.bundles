@@ -9,13 +9,15 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'tpope/vim-surround'
             Bundle 'kien/ctrlp.vim'
-            Bundle 'Lokaltog/vim-powerline'
+            "Bundle 'Lokaltog/vim-powerline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'godlygeek/csapprox'
             Bundle 'flazz/vim-colorschemes'
             Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
+            Bundle 'chriskempson/base16-vim'
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
+            Bundle 'tpope/vim-unimpaired'
 
     " General Programming
             " Pick one of the checksyntax, jslint, or syntastic
