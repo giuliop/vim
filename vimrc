@@ -51,7 +51,7 @@
     " set autowrite                   " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
-    set virtualedit=onemore         " allow for cursor beyond last character
+    "set virtualedit=onemore         " allow for cursor beyond last character
     set history=1000                " Store a ton of history (default is 20)
     " set spell                       " spell checking on
     set hidden                      " allow buffer switching without saving
@@ -106,7 +106,7 @@ endif
     set scrolljump=5                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
-    set list
+    set list                        " show char listed below in listchars
     set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
     set gdefault                        " apply global substitution to all occurrences in lines
     set colorcolumn=85
@@ -140,9 +140,9 @@ endif
     nnoremap <leader>m :noh<cr>
     inoremap <leader>m <ESC>:noh<cr>a
 
-    " Tab to move around bracket pairs
-    nnoremap <tab> %
-    vnoremap <tab> %
+    " Enter to move around bracket pairs
+    nnoremap <CR> %
+    vnoremap <CR> %
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
@@ -254,9 +254,9 @@ endif
     " open horizontal split
     nnoremap <leader>s <C-w>s<C-w>l
 
-    " Ctrl+s to save
-    map <C-s> :w<cr>
-    imap <C-s> <ESC>:w<cr>
+    " Ctrl+s to save and de-highlght search if needed
+    map <C-s> :noh<cr>:w<cr>
+    imap <expr> <C-s>  pumvisible() ? "\<cr><ESC>:noh<cr>:w<cr>" : "<ESC>:noh<cr>:w<cr>"
 
     " Ctrl+q to quit, hold shift to discard changes
     map <C-q> :q<cr>
@@ -317,46 +317,49 @@ endif
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-     " Session List
+    " Session List
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
 
-     " Buffer explorer
+    " Buffer explorer
         nmap <leader>b :BufExplorer<CR>
 
-     " JSON
+    " JSON
         nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 
-     " PyMode
+    " PyMode
         let g:pymode_lint_checker = "pyflakes"
         let g:pymode_utils_whitespaces = 0
 
-     " ctrlp
-        let g:ctrlp_working_path_mode = 2
-        nnoremap <silent> <C-t> :CtrlPmixed<CR>
+    " ctrlp
+        let g:ctrlp_working_path_mode = 'c'
+        nnoremap <silent> <C-t> :CtrlPMixed<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$' }
 
-        let g:ctrlp_user_command = {
-            \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            \ },
-            \ 'fallback': 'find %s -type f'
-        \ }
+        "let g:ctrlp_user_command = {
+            "\ 'types': {
+                "\ 1: ['.git', 'cd %s && git ls-files'],
+                "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            "\ },
+            "\ 'fallback': 'find %s -type f'
 
-     " TagBar
+    " YankRing
+       let g:yankring_history_dir = '~/.vim/'
+       let g:yankring_min_element_length = 2
+
+    " TagBar
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
-     " PythonMode
-     " Disable if python support not present
+    " PythonMode
+        " Disable if python support not present
         if !has('python')
            let g:pymode = 1
         endif
 
-     " Fugitive
+    " Fugitive
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -364,7 +367,7 @@ endif
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
 
-     " neocomplcache
+    " neocomplcache
         let g:acp_enableAtStartup = 0
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_enable_camel_case_completion = 1
@@ -376,8 +379,7 @@ endif
 
         " SuperTab like snippets behavior.
         imap <silent><expr><TAB> neosnippet#expandable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-            \ "\<C-e>" : "\<TAB>")
+            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
         smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
         " Define dictionary.

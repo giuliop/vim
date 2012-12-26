@@ -2,6 +2,11 @@
     " Vundle to rule them all
             Bundle 'gmarik/vundle'
 
+    " To try...
+            "Bundle 'polu/dwm.vim'
+            "Bundle 'Lokaltog/vim-powerline'
+            "EasyTags
+
     " General
             Bundle 'scrooloose/nerdtree'
             Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -9,7 +14,6 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'tpope/vim-surround'
             Bundle 'kien/ctrlp.vim'
-            "Bundle 'Lokaltog/vim-powerline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'godlygeek/csapprox'
             Bundle 'flazz/vim-colorschemes'
@@ -18,6 +22,9 @@
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'tpope/vim-abolish.git'
             Bundle 'tpope/vim-unimpaired'
+            Bundle 'vim-scripts/bufexplorer.zip'
+            Bundle 'vim-scripts/YankRing.vim'
+
 
     " General Programming
             " Pick one of the checksyntax, jslint, or syntastic
