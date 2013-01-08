@@ -1,3 +1,6 @@
+" Inspired from http://stevelosh.com/blog/2010/09/coming-home-to-vim/ and
+" https://github.com/spf13/spf13-vim/blob/3.0/.vimrc
+
 " General
     set nocompatible                "who cares about vi?
     set modelines=0                 "will not use modelines
@@ -21,26 +24,6 @@
         source ~/.vim/vimrc.bundles
     endif
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages for Arch Linux
-    if os == 'Linux' && filereadable(expand("~/.vim/archlinux.vim"))
-        runtime! ~/.vim/archlinux.vim
-    endif
-
-" Lines inspired from http://stevelosh.com/blog/2010/09/coming-home-to-vim/ and
-" https://github.com/spf13/spf13-vim/blob/3.0/.vimrc
-
-" Formatting
-    set wrap                        " wrap long lines
-    set autoindent                  " indent at the same level of the previous line
-    set shiftwidth=4                " use indents of 4 spaces
-    set expandtab                   " tabs are spaces, not tabs
-    set tabstop=4                   " an indentation every four columns
-    set softtabstop=4               " let backspace delete indent
-
-    " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
 " System
     filetype plugin indent on       " Automatically detect file types.
     syntax on                       " syntax highlighting
@@ -63,6 +46,17 @@
         set undolevels=1000         "maximum number of changes that can be undone
         set undoreload=10000        "maximum number lines to save for undo on a buffer reload
     endif
+
+" Formatting
+    set wrap                        " wrap long lines
+    set autoindent                  " indent at the same level of the previous line
+    set shiftwidth=4                " use indents of 4 spaces
+    set expandtab                   " tabs are spaces, not tabs
+    set tabstop=4                   " an indentation every four columns
+    set softtabstop=4               " let backspace delete indent
+
+    " Remove trailing whitespaces and ^M chars
+    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 
 " Vim UI
