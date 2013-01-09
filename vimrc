@@ -134,9 +134,9 @@ endif
     nnoremap <leader>m :noh<cr>
     inoremap <leader>m <ESC>:noh<cr>a
 
-    " Enter to move around bracket pairs
-    nnoremap <CR> %
-    vnoremap <CR> %
+    " \ to move around bracket pairs
+    nnoremap \ %
+    vnoremap \ %
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
