@@ -252,11 +252,9 @@ endif
     map <C-s> :noh<cr>:w<cr>
     imap <expr> <C-s>  pumvisible() ? "\<cr><ESC>:noh<cr>:w<cr>" : "<ESC>:noh<cr>:w<cr>"
 
-    " Ctrl+q to quit, hold shift to discard changes
+    " Ctrl+q to quit
     map <C-q> :q<cr>
     imap <C-q> <ESC>:q<cr>
-    map <C-S-q> :q!<cr>
-    imap <C-S-q> <ESC>:q!<cr>
 
 " Plugins
 
@@ -328,10 +326,13 @@ endif
 
     " ctrlp
         let g:ctrlp_working_path_mode = 'c'
+        let g:ctrlp_map = '<c-t>'
         nnoremap <silent> <C-t> :CtrlPMixed<CR>
+        let g:ctrlp_show_hidden = 1
+        set wildignore+=*/..*
         let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
+                    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                    \ 'file': '\v\.(swp|so|zip)$', }
 
         "let g:ctrlp_user_command = {
             "\ 'types': {
@@ -341,8 +342,9 @@ endif
             "\ 'fallback': 'find %s -type f'
 
     " YankRing
-       let g:yankring_history_dir = '~/.vim/'
-       let g:yankring_min_element_length = 2
+        let g:yankring_history_dir = '~/.vim/'
+        let g:yankring_min_element_length = 2
+        "let g:yankring_enabled = 0
 
     " TagBar
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
