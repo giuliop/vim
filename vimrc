@@ -416,6 +416,7 @@ endif
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType go setlocal omnifunc=gocomplete#Complete
 
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
@@ -446,6 +447,13 @@ endif
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost .vimrc source ~/.vimrc
+
+        " reformat golang programs on save
+        autocmd BufWritePost *.go :silent Fmt
+
+        " don't show whitespaces for golang
+        autocmd FileType go setlocal nolist
+
     endif
 
 " Functions

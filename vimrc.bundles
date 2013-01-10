@@ -47,6 +47,10 @@
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/snipmate-snippets'
 
+    " Golang
+            Bundle 'jnwhiteh/vim-golang'
+            Bundle 'nsf/gocode' , {'rtp': 'vim/'}
+
     " Python
             " Pick either python-mode or pyflakes & pydoc
             Bundle 'klen/python-mode'
