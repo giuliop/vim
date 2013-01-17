@@ -116,7 +116,9 @@ endif
         "set term=$TERM              " Make arrow and other keys work
     endif
 
-    colorscheme Tomorrow-Night
+    set background=dark
+    colorscheme lucius
+    LuciusDarkLowContrast
 
     if has('gui_running') && os == 'Mac'
         set guifont=Inconsolata:h16.00
@@ -255,6 +257,9 @@ endif
     " Ctrl+q to quit
     map <C-q> :q<cr>
     imap <C-q> <ESC>:q<cr>
+
+    " Run golang program
+    map <leader>g :!go run %<CR>
 
 " Plugins
 
@@ -418,7 +423,6 @@ endif
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        autocmd FileType go setlocal omnifunc=gocomplete#Complete
 
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
@@ -442,7 +446,7 @@ endif
         autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 
         " if html file set jinja syntax
-        autocmd BufRead *.html :set syntax=jinja
+        "autocmd BufRead *.html :set syntax=jinja
 
         " HTML tabs to two spaces and no wrap
         autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 nowrap

@@ -12,6 +12,7 @@
             Bundle 'MarcWeber/vim-addon-mw-utils'
             Bundle 'tomtom/tlib_vim'
             Bundle 'altercation/vim-colors-solarized'
+            Bundle 'jonathanfilip/vim-lucius'
             Bundle 'tpope/vim-surround'
             Bundle 'kien/ctrlp.vim'
             Bundle 'Lokaltog/vim-easymotion'
