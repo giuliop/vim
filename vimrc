@@ -259,7 +259,7 @@ endif
     imap <C-q> <ESC>:q<cr>
 
     " Run golang program
-    map <leader>g :!go run %<CR>
+    map <leader>g :w<CR>:!go run %<CR>
 
 " Plugins
 
