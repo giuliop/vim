@@ -141,7 +141,7 @@ endif
     vnoremap \ %
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
+    nnoremap <s-y> y$
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -180,7 +180,7 @@ endif
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
-    " resize with shift + movement key 
+    " resize with movement key 
     nnoremap <left> <C-w>2>
     nnoremap <down> <C-w>2+
     nnoremap <up> <C-w>2-
@@ -228,7 +228,7 @@ endif
     nnoremap <leader>n :vne<CR>
 
     " Fast editing of the .vimrc
-    map <leader>e :e! ~/.vimrc<cr>
+    map <leader>e :e! ~/.vim/vimrc<cr>
 
     " add blank lines above or below current line
     "nnoremap <leader>- m`:put!=''<CR>``
@@ -445,11 +445,11 @@ endif
         " Treat .json files as .js
         autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 
-        " if html file set jinja syntax
-        "autocmd BufRead *.html :set syntax=jinja
+        " if html file set htmlgoexp syntax
+        autocmd FileType html setlocal syntax=htmlgoexp
 
         " HTML tabs to two spaces and no wrap
-        autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 nowrap
+        autocmd FileType html setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2 nowrap
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -457,9 +457,11 @@ endif
         " reformat golang programs on save
         autocmd BufWritePost *.go :silent Fmt
 
-        " don't show whitespaces for golang
-        autocmd FileType go setlocal nolist
+        " don't show whitespaces for golang, html
+        autocmd FileType go,html setlocal nolist
 
+        " reapply colorscheme to html files to fix weird coloring of go template syntax
+        autocmd FileType html exec "colorscheme ".g:colors_name
     endif
 
 " Functions
@@ -533,4 +535,3 @@ endif
             call cursor(l, c)
         endif
     endfunction
-
