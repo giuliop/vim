@@ -60,6 +60,7 @@
 
 
 " Vim UI
+    set title                       " set the terminal title
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
@@ -141,7 +142,7 @@ endif
     vnoremap \ %
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap <s-y> y$
+    nnoremap <S-y> y$
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -257,9 +258,6 @@ endif
     " Ctrl+q to quit
     map <C-q> :q<cr>
     imap <C-q> <ESC>:q<cr>
-
-    " Run golang program
-    map <leader>g :w<CR>:!go run %<CR>
 
 " Plugins
 
@@ -435,12 +433,12 @@ endif
 
 " Automatic commands
 
-        " always switch to the current file directory.
-        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
     if has("autocmd")
         " disable automatic commenting of lines after comments
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+        " always switch to the current file directory.
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
         " Treat .json files as .js
         autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
@@ -454,11 +452,8 @@ endif
         " When vimrc is edited, reload it
         autocmd! bufwritepost .vimrc source ~/.vimrc
 
-        " reformat golang programs on save
-        autocmd BufWritePost *.go :silent Fmt
-
-        " don't show whitespaces for golang, html
-        autocmd FileType go,html setlocal nolist
+        " don't show whitespaces for html
+        autocmd FileType html setlocal nolist
 
         " reapply colorscheme to html files to fix weird coloring of go template syntax
         autocmd FileType html exec "colorscheme ".g:colors_name
