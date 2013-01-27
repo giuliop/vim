@@ -26,7 +26,7 @@
 
 " System
     filetype plugin indent on       " Automatically detect file types.
-    syntax on                       " syntax highlighting
+    syntax enable                       " syntax highlighting
     scriptencoding utf-8
     "set mouse=a                     " automatically enable mouse usage
     "set mousehide                   " hide the mouse cursor while typing
@@ -60,7 +60,7 @@
 
 
 " Vim UI
-    set title                       " set the terminal title
+    "set title                       " set the terminal title
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
@@ -103,7 +103,7 @@ endif
     set foldenable                  " auto fold code
     set list                        " show char listed below in listchars
     set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
-    set gdefault                        " apply global substitution to all occurrences in lines
+    set gdefault                    " apply global substitution to all occurrences in lines
     set colorcolumn=85
     set splitright
     " set colorcolumn color
@@ -216,9 +216,6 @@ endif
     " allow the . to execute once for each line of a visual selection
     vnoremap . :normal .<CR>
 
-    " to reload the the current file (e.g., the vimrc)
-    " nnoremap <leader>r :so<space>%<CR>
-
     " For when you forget to sudo.. Really Write the file.
     noremap <leader>ww :w !sudo tee % > /dev/null<CR>
 
@@ -293,7 +290,6 @@ endif
 
     " NerdTree
         map <leader>2 :NERDTreeToggle<CR>
-        map <leader>1 :NERDTreeFind<CR>
 
         " let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -336,13 +332,6 @@ endif
         let g:ctrlp_custom_ignore = {
                     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
                     \ 'file': '\v\.(swp|so|zip)$', }
-
-        "let g:ctrlp_user_command = {
-            "\ 'types': {
-                "\ 1: ['.git', 'cd %s && git ls-files'],
-                "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            "\ },
-            "\ 'fallback': 'find %s -type f'
 
     " YankRing
         let g:yankring_history_dir = '~/.vim/'
@@ -440,23 +429,12 @@ endif
         " always switch to the current file directory.
         autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
-        " Treat .json files as .js
-        autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-
-        " if html file set htmlgoexp syntax
-        autocmd FileType html setlocal syntax=htmlgoexp
-
-        " HTML tabs to two spaces and no wrap
-        autocmd FileType html setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2 nowrap
+        " HTML tabs to two spaces, no wrap, no expand tab to spaces, no show whitespaces
+        autocmd FileType html setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2 nowrap nolist
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost .vimrc source ~/.vimrc
 
-        " don't show whitespaces for html
-        autocmd FileType html setlocal nolist
-
-        " reapply colorscheme to html files to fix weird coloring of go template syntax
-        autocmd FileType html exec "colorscheme ".g:colors_name
     endif
 
 " Functions
@@ -515,9 +493,6 @@ endif
 
     " Strip whitespace
     function! StripTrailingWhitespace()
-        " To disable the stripping of whitespace, add the following to your
-        " .vimrc.local file:
-        "   let g:spf13_keep_trailing_whitespace = 1
         if !exists('g:spf13_keep_trailing_whitespace')
             " Preparation: save last search, and cursor position.
             let _s=@/
