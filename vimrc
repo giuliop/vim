@@ -28,21 +28,16 @@
     filetype plugin indent on       " Automatically detect file types.
     syntax enable                       " syntax highlighting
     scriptencoding utf-8
-    "set mouse=a                     " automatically enable mouse usage
-    "set mousehide                   " hide the mouse cursor while typing
 
-    " set autowrite                   " automatically write a file when leaving a modified buffer
-    set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+    set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter') use :file! to see full message
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
-    "set virtualedit=onemore         " allow for cursor beyond last character
     set history=1000                " Store a ton of history (default is 20)
-    " set spell                       " spell checking on
     set hidden                      " allow buffer switching without saving
 
     " Setting up the directories
-    set backup                      " backups are nice ...
+    set backup                      " backups are nice
     if has('persistent_undo')
-        set undofile                "so is persistent undo ...
+        set undofile                "so is persistent undo
         set undolevels=1000         "maximum number of changes that can be undone
         set undoreload=10000        "maximum number lines to save for undo on a buffer reload
     endif
@@ -53,21 +48,19 @@
     set shiftwidth=4                " use indents of 4 spaces
     set expandtab                   " tabs are spaces, not tabs
     set tabstop=4                   " an indentation every four columns
-    set softtabstop=4               " let backspace delete indent
+    set softtabstop=4               " let backspacehhhdelete indent
 
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType javascript,python autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 
 " Vim UI
-    "set title                       " set the terminal title
-    set tabpagemax=15               " only show 15 tabs
+    set title                       " set the terminal title
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
 
     if has('cmdline_info')
         set ruler                   " show the ruler
-        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
         set showcmd                 " show partial commands in status line and selected characters/lines in visual mode
     endif
 
@@ -77,14 +70,14 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\        " Filename
         set statusline+=%w%h%m%r    " Options
-        "set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=%{fugitive#statusline()} " Git Hotness
         set statusline+=\ [%{&ff}/%Y]            " filetype
         set statusline+=\ [%{getcwd()}]          " current dir
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
+    endif
 
     set relativenumber              " instead of absolute numbers
     set backspace=indent,eol,start  " backspace for dummies
@@ -98,23 +91,19 @@ endif
     set wildmenu                    " show list instead of just completing
     set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
     set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
-    set scrolljump=5                " lines to scroll when cursor leaves screen
+    set scrolljump=3                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
     set list                        " show char listed below in listchars
     set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
     set gdefault                    " apply global substitution to all occurrences in lines
-    set colorcolumn=85
-    set splitright
-    " set colorcolumn color
-    hi ColorColumn ctermbg=darkgrey guibg=darkgrey
-    " set formatoptions=qn1
+    set colorcolumn=85              " show column to highlight long lines
+    set splitright                  " new windows opens to the right
 
 " Graphics
     if ! has("gui_running") 
         set term=screen-256color
         set t_Co=256
-        "set term=$TERM              " Make arrow and other keys work
     endif
 
     set background=dark
@@ -228,19 +217,10 @@ endif
     " Fast editing of the .vimrc
     map <leader>e :e! ~/.vim/vimrc<cr>
 
-    " add blank lines above or below current line
-    "nnoremap <leader>- m`:put!=''<CR>``
-    "nnoremap <leader>= m`:put=''<CR>``
-    "inoremap <leader>- <ESC>m`:put!=''<CR>``a
-    "inoremap <leader>= <ESC>m`:put=''<CR>``a
-
-    " close all files without saving and save global session
-    "nnoremap <leader>ww :qa!<CR>
-    "save and close all files and save global session
-    "nnoremap <leader>q :mksession! ~/.vim/Session.vim<CR>:wqa<CR>
-
-    " reselect text just pasted
-    " nnoremap <leader>"choose a letter" V`]
+    " add blank lines above or below current line in insert mode
+    " with same shortcuts as vim.unimpaired
+    inoremap [<space> <ESC>m`:put!=''<CR>``a
+    inoremap ]<space> <ESC>m`:put=''<CR>``a
 
     " open vertical split
     nnoremap <leader>v <C-w>v<C-w>l
@@ -433,7 +413,7 @@ endif
         autocmd FileType html setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2 nowrap nolist
 
         " When vimrc is edited, reload it
-        autocmd! bufwritepost .vimrc source ~/.vimrc
+        autocmd! bufwritepost vimrc source ~/.vimrc
 
     endif
 
@@ -478,18 +458,6 @@ endif
         endfor
     endfunction
     call InitializeDirectories()
-
-    function! NERDTreeInitAsNeeded()
-        redir => bufoutput
-        buffers!
-        redir END
-        let idx = stridx(bufoutput, "NERD_tree")
-        if idx > -1
-            NERDTreeMirror
-            NERDTreeFind
-            wincmd l
-        endif
-    endfunction
 
     " Strip whitespace
     function! StripTrailingWhitespace()
