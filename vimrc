@@ -123,8 +123,8 @@
     vnoremap / /\v
 
     " comma to de-highlight search
-    nnoremap <leader>m :noh<cr>
-    inoremap <leader>m <ESC>:noh<cr>a
+    nnoremap <leader>m :noh<CR>
+    inoremap <leader>m <ESC>:noh<CR>a
 
     " \ to move around bracket pairs
     nnoremap \ %
@@ -200,7 +200,7 @@
     nnoremap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
 
     " Toggle relative and absolute numbering
-    nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<cr><cr>
+    nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
 
     " allow the . to execute once for each line of a visual selection
     vnoremap . :normal .<CR>
@@ -215,7 +215,7 @@
     nnoremap <leader>n :vne<CR>
 
     " Fast editing of the .vimrc
-    map <leader>e :e! ~/.vim/vimrc<cr>
+    map <leader>e :e! ~/.vim/vimrc<CR>
 
     " add blank lines above or below current line in insert mode
     " with same shortcuts as vim.unimpaired
@@ -228,13 +228,16 @@
     " open horizontal split
     nnoremap <leader>s <C-w>s<C-w>l
 
-    " Ctrl+s to save and de-highlght search if needed
-    map <C-s> :noh<cr>:w<cr>
-    imap <expr> <C-s>  pumvisible() ? "\<cr><ESC>:noh<cr>:w<cr>" : "<ESC>:noh<cr>:w<cr>"
+    " Ctrl+s to save and if needed de-highlght search and select autocomplete
+    map <C-s> :noh<CR>:w<CR>
+    imap <expr> <C-s>  pumvisible() ? "\<CR><ESC>:noh<CR>:w<CR>" : "<ESC>:noh<CR>:w<CR>"
 
     " Ctrl+q to quit
-    map <C-q> :q<cr>
-    imap <C-q> <ESC>:q<cr>
+    map <C-q> :q<CR>
+    imap <C-q> <ESC>:q<CR>
+
+    " mm to toggle mouse mde
+    map mm :call MouseToggle()<CR>
 
 " Plugins
 
@@ -419,14 +422,7 @@
 
 " Functions
 
-    function! UnBundle(arg, ...)
-      let bundle = vundle#config#init_bundle(a:arg, a:000)
-      call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
-    endfunction
-
-    com! -nargs=+         UnBundle
-    \ call UnBundle(<args>)
-
+    " Set up centralized directories for vim temp files
     function! InitializeDirectories()
         let separator = "."
         let home = $HOME
@@ -471,5 +467,14 @@
             " clean up: restore previous search history, and cursor position
             let @/=_s
             call cursor(l, c)
+        endif
+    endfunction
+
+    " Toggle mouse mpde
+    function! MouseToggle()
+        if &mouse == ""
+            let &mouse="a"
+        else
+            let &mouse=""
         endif
     endfunction
