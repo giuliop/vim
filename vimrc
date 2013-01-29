@@ -114,6 +114,8 @@
         set guifont=Inconsolata:h16.00
     endif
 
+    hi ColorColumn ctermbg=59 guibg=darkgrey
+
 " Key (re)Mappings
 
     let mapleader = ","
@@ -218,9 +220,8 @@
     map <leader>e :e! ~/.vim/vimrc<CR>
 
     " add blank lines above or below current line in insert mode
-    " with same shortcuts as vim.unimpaired
-    inoremap [<space> <ESC>m`:put!=''<CR>``a
-    inoremap ]<space> <ESC>m`:put=''<CR>``a
+    inoremap <leader>[ <ESC>m`:put!=''<CR>``a
+    inoremap <leader>] <ESC>m`:put=''<CR>``a
 
     " open vertical split
     nnoremap <leader>v <C-w>v<C-w>l
