@@ -6,21 +6,21 @@
             "Bundle 'polu/dwm.vim'
             "Bundle 'Lokaltog/vim-powerline'
             "EasyTags
+            "Bundle 'tpope/vim-abolish.git'
+            "Bundle 'godlygeek/tabular'
 
     " General
             Bundle 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
             Bundle 'scrooloose/nerdtree'
-            Bundle 'MarcWeber/vim-addon-mw-utils'
-            Bundle 'tomtom/tlib_vim'
             Bundle 'tpope/vim-surround'
             Bundle 'kien/ctrlp.vim'
             Bundle 'Lokaltog/vim-easymotion'
-            Bundle 'vim-scripts/restore_view.vim'
-            Bundle 'tpope/vim-abolish.git'
             Bundle 'tpope/vim-unimpaired'
-            Bundle 'vim-scripts/bufexplorer.zip'
             Bundle 'vim-scripts/YankRing.vim'
             Bundle 'matchit.zip'
+            Bundle 'vim-scripts/restore_view.vim'
+            Bundle 'vim-scripts/sessionman.vim'
+            Bundle 'vim-scripts/bufexplorer.zip'
 
     "Colors
 
@@ -33,22 +33,16 @@
             Bundle 'altercation/vim-colors-solarized'
 
     " General Programming
-            " Pick one of the checksyntax, jslint, or syntastic
             Bundle 'scrooloose/syntastic'
             Bundle 'tpope/vim-fugitive'
             Bundle 'scrooloose/nerdcommenter'
-            Bundle 'godlygeek/tabular'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
 
     " Snippets & AutoComplete
-            Bundle 'garbas/vim-snipmate'
-            Bundle 'honza/snipmate-snippets'
-            " Source support_function.vim to support snipmate-snippets.
-            if filereadable(expand("~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim"))
-                source ~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim
-            endif
+            "Bundle 'MarcWeber/vim-addon-mw-utils'
+            "Bundle 'tomtom/tlib_vim'
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/snipmate-snippets'
@@ -73,5 +67,3 @@
     " HTML
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
-
-    " Misc

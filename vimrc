@@ -101,7 +101,7 @@
     set splitright                  " new windows opens to the right
 
 " Graphics
-    if ! has("gui_running") 
+    if ! has("gui_running")
         set term=screen-256color
         set t_Co=256
     endif
@@ -121,19 +121,19 @@
     let mapleader = ","
 
     " normal regex, not Vim's one
-    nnoremap / /\v
-    vnoremap / /\v
+    nmap / /\v
+    vmap / /\v
 
     " comma to de-highlight search
-    nnoremap <leader>m :noh<CR>
-    inoremap <leader>m <ESC>:noh<CR>a
+    nmap <leader>m :noh<CR>
+    imap <leader>m <ESC>:noh<CR>a
 
     " \ to move around bracket pairs
-    nnoremap \ %
-    vnoremap \ %
+    nmap \ %
+    vmap \ %
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap <S-y> y$
+    nmap <S-y> y$
 
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -150,43 +150,41 @@
     set pastetoggle=<leader>0           " pastetoggle (sane indentation on pastes)
 
     " Disable arrow keys and sane up and down
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
-    nnoremap j gj
-    nnoremap k gk
+    imap <up> <nop>
+    imap <down> <nop>
+    imap <left> <nop>
+    imap <right> <nop>
+    nmap j gj
+    nmap k gk
 
     " No more help staring by mistake
-    noremap <F1> <ESC>
-    nnoremap <F1> <ESC>
-    vnoremap <F1> <ESC>
+    map <F1> <ESC>
 
     " Some extra time savers
-    nnoremap ; :
-    inoremap kj <ESC>
+    nmap ; :
+    imap kj <ESC>
 
     " move around with ctrl + movement key
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
+    nmap <C-h> <C-w>h
+    nmap <C-j> <C-w>j
+    nmap <C-k> <C-w>k
+    nmap <C-l> <C-w>l
 
-    " resize with movement key 
-    nnoremap <left> <C-w>2>
-    nnoremap <down> <C-w>2+
-    nnoremap <up> <C-w>2-
-    nnoremap <right> <C-w>2<
+    " resize with movement key
+    nmap <left> <C-w>2>
+    nmap <down> <C-w>2+
+    nmap <up> <C-w>2-
+    nmap <right> <C-w>2<
 
-    " Use Ctrl-W to delete the previous word, Ctrl-U to delete a line, and Ctrl-Y 
+    " Use Ctrl-W to delete the previous word, Ctrl-U to delete a line, and Ctrl-Y
     " to paste what you've deleted back, all while remaining in insert mode
-    inoremap <silent> <C-W> <C-\><C-O>db
-    inoremap <silent> <C-U> <C-\><C-O>d0
-    inoremap <silent> <C-Y> <C-R>"
+    imap <silent> <C-W> <C-\><C-O>db
+    imap <silent> <C-U> <C-\><C-O>d0
+    imap <silent> <C-Y> <C-R>"
 
     " visual shifting (does not exit Visual mode)
-    vnoremap < <gv
-    vnoremap > >gv
+    vmap < <gv
+    vmap > >gv
 
     " map <leader>ff to display all lines with keyword under cursor and ask which one to jump to
     nmap <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -196,42 +194,42 @@
     map zh zH
 
     " use space to replay macro 'q' (qq / q to start/stop recording)
-    :nnoremap <Space> @q
+    nmap <Space> @q
 
     " Toggle line numbers and fold column for easy copying
-    nnoremap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
+    nmap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
 
     " Toggle relative and absolute numbering
-    nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
+    nmap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
 
     " allow the . to execute once for each line of a visual selection
-    vnoremap . :normal .<CR>
+    vmap . :normal .<CR>
 
     " For when you forget to sudo.. Really Write the file.
-    noremap <leader>ww :w !sudo tee % > /dev/null<CR>
+    map <leader>ww :w !sudo tee % > /dev/null<CR>
 
     " to save and open current file
-    nnoremap <leader>o :w<CR>:!open<space>%<CR>
+    nmap <leader>o :w<CR>:!open<space>%<CR>
 
     " to open new vertical split with new file
-    nnoremap <leader>n :vne<CR>
+    nmap <leader>n :vne<CR>
 
     " Fast editing of the .vimrc
     map <leader>e :e! ~/.vim/vimrc<CR>
 
     " add blank lines above or below current line in insert mode
-    inoremap <leader>[ <ESC>m`:put!=''<CR>``a
-    inoremap <leader>] <ESC>m`:put=''<CR>``a
+    imap <leader>[ <ESC>m`:put!=''<CR>``a
+    imap <leader>] <ESC>m`:put=''<CR>``a
 
     " open vertical split
-    nnoremap <leader>v <C-w>v<C-w>l
+    nmap <leader>v <C-w>v<C-w>l
 
     " open horizontal split
-    nnoremap <leader>s <C-w>s<C-w>l
+    nmap <leader>s <C-w>s<C-w>l
 
     " Ctrl+s to save and if needed de-highlght search and select autocomplete
     map <C-s> :noh<CR>:w<CR>
-    imap <expr> <C-s>  pumvisible() ? "\<CR><ESC>:noh<CR>:w<CR>" : "<ESC>:noh<CR>:w<CR>"
+    imap <expr> <C-s>  pumvisible() ? "\<CR><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
 
     " Ctrl+q to quit
     map <C-q> :q<CR>
@@ -248,49 +246,12 @@
     " Syntastic
          let g:syntastic_javascript_checker='jshint'
 
-    " OmniComplete
-        if has("autocmd") && exists("+omnifunc")
-            autocmd Filetype *
-                \if &omnifunc == "" |
-                \setlocal omnifunc=syntaxcomplete#Complete |
-                \endif
-        endif
-
-        hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-        hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-        hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-        " some convenient mappings
-        inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-        inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-        inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-        inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-        inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-        inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-        " automatically open and close the popup menu / preview window
-        au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set completeopt=menu,preview,longest
-
     " NerdTree
         map <leader>2 :NERDTreeToggle<CR>
-
         " let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowHidden=1
-
-    " Tabularize
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
     " Session List
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
@@ -310,7 +271,7 @@
     " ctrlp
         let g:ctrlp_working_path_mode = 'c'
         let g:ctrlp_map = '<c-t>'
-        nnoremap <silent> <C-t> :CtrlPMixed<CR>
+        nmap <silent> <C-t> :CtrlPMixed<CR>
         let g:ctrlp_show_hidden = 1
         set wildignore+=*/..*
         let g:ctrlp_custom_ignore = {
@@ -323,7 +284,7 @@
         "let g:yankring_enabled = 0
 
     " TagBar
-        nnoremap <silent> <leader>tt :TagbarToggle<CR>
+        nmap <silent> <leader>tt :TagbarToggle<CR>
 
     " PythonMode
         " Disable if python support not present
@@ -332,27 +293,36 @@
         endif
 
     " Fugitive
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
+        nmap <silent> <leader>gs :Gstatus<CR>
+        nmap <silent> <leader>gd :Gdiff<CR>
+        nmap <silent> <leader>gc :Gcommit<CR>
+        nmap <silent> <leader>gb :Gblame<CR>
+        nmap <silent> <leader>gl :Glog<CR>
+        nmap <silent> <leader>gp :Git push<CR>
+
+    " OmniComplete
+        hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+        hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+        hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+
+        " some convenient mappings
+        imap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+        "imap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+        "imap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+        "imap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+        imap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+        imap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+        " automatically open and close the popup menu / preview window
+        "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        set completeopt=menu,menuone,preview,longest
 
     " neocomplcache
-        let g:acp_enableAtStartup = 0
         let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_camel_case_completion = 1
         let g:neocomplcache_enable_smart_case = 1
-        let g:neocomplcache_enable_underbar_completion = 1
         let g:neocomplcache_enable_auto_delimiter = 1
         let g:neocomplcache_max_list = 15
         let g:neocomplcache_force_overwrite_completefunc = 1
-
-        " SuperTab like snippets behavior.
-        imap <silent><expr><TAB> neosnippet#expandable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
-        smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
         " Define dictionary.
         let g:neocomplcache_dictionary_filetype_lists = {
@@ -361,39 +331,21 @@
             \ 'scheme' : $HOME.'/.gosh_completions'
             \ }
 
-        " Define keyword.
-        if !exists('g:neocomplcache_keyword_patterns')
-            let g:neocomplcache_keyword_patterns = {}
-        endif
-        let g:neocomplcache_keyword_patterns._ = '\h\w*'
-
         " Plugin key-mappings.
         imap <C-k> <Plug>(neosnippet_expand_or_jump)
         smap <C-k> <Plug>(neosnippet_expand_or_jump)
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-        inoremap <expr><CR> neocomplcache#complete_common_string()
-
-        " <TAB>: completion.
-        inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-        " <CR>: close popup
-        " <s-CR>: close popup and save indent.
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+        imap <expr><C-g> neocomplcache#undo_completion()
+        imap <expr><C-l> neocomplcache#complete_common_string()
 
         " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y> neocomplcache#close_popup()
+        imap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+        imap <expr><C-y> neocomplcache#close_popup()
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
         " use honza's snippets
         let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
