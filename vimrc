@@ -279,7 +279,7 @@
                     \ 'file': '\v\.(swp|so|zip)$', }
 
     " YankRing
-        let g:yankring_history_dir = '~/.vim/'
+        let g:yankring_history_dir = '~/.vim/.dirs'
         let g:yankring_min_element_length = 2
         "let g:yankring_enabled = 0
 
@@ -323,6 +323,7 @@
         let g:neocomplcache_enable_auto_delimiter = 1
         let g:neocomplcache_max_list = 15
         let g:neocomplcache_force_overwrite_completefunc = 1
+        let g:neocomplcache_temporary_dir = '~/.vim/.dirs/.neocon'
 
         " Define dictionary.
         let g:neocomplcache_dictionary_filetype_lists = {
@@ -379,7 +380,7 @@
     function! InitializeDirectories()
         let separator = "."
         let home = $HOME
-        let parent = home . '/' . '.vim'
+        let parent = home . '/' . '.vim/.dirs'
         let prefix = '.vim'
         let dir_list = {
                     \ 'backup': 'backupdir',
