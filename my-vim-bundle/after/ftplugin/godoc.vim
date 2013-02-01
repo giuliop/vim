@@ -4,21 +4,21 @@
 "
 " godoc.vim: Vim command to see godoc.
 
-if exists("g:loaded_godoc")
+if exists("g:loaded_godoc2")
   finish
 endif
-let g:loaded_godoc = 1
+let g:loaded_godoc2 = 1
 
 let s:buf_nr = -1
 let s:last_word = ''
 
 function! s:GodocView()
   if !bufexists(s:buf_nr)
-    rightbelow vnew                                     " modified
+    rightbelow vnew
     file `="[Godoc]"`
     let s:buf_nr = bufnr('%')
   elseif bufwinnr(s:buf_nr) == -1
-    rightbelow vsplit                                   " modified
+    rightbelow vsplit
     execute s:buf_nr . 'buffer'
     delete _
   elseif bufwinnr(s:buf_nr) != bufwinnr('%')
@@ -69,10 +69,10 @@ endfunction
 
 function! s:Godoc(...)
   let word = join(a:000, ' ')
+  echo word
   if !len(word)
     let word = expand('<cword>')
   endif
-  let word = substitute(word, '[^a-zA-Z0-9\\/._~-]', '', 'g')
   if !len(word)
     return
   endif

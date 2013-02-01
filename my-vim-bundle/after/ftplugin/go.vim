@@ -9,6 +9,9 @@ setlocal nolist
 " Run golang program
 map <leader>g :w<CR>:!go run %<CR>
 
+" Run Godoc on keyword under cursor
+map <leader>d <Plug>(godoc-keyword)
+
 " Change = in := (cursor must be left of =)
 map <leader>; ^f=i:<ESC>
 
