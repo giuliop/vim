@@ -3,8 +3,9 @@
 " reformat golang programs on save
 autocmd InsertLeave *.go :silent Fmt
 
-" don't show whitespaces for golang, html
+" don't show whitespaces for Go and godoc files
 setlocal nolist
+autocmd FileType godoc setlocal nolist
 
 " Run golang program
 map <leader>g :w<CR>:!go run %<CR>

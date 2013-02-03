@@ -69,14 +69,42 @@ endfunction
 
 function! s:Godoc(...)
   let word = join(a:000, ' ')
-  echo word
   if !len(word)
     let word = expand('<cword>')
+    let m = matchlist(getbufline("", line(".")), '\(\w*\)\([/.]\)' . word . '[^-_[:alnum:]]')
+    if !empty(m)
+        if m[2] == "."
+            let package = s:AddParent(m[1])
+            let word = package . ' ' . word
+        elseif m[2] == "/"
+            let word = m[1] . "/" . word
+        endif
+    else
+        let word = s:AddParent(word)
+    endif
   endif
   if !len(word)
     return
   endif
   call s:GodocWord(word)
+endfunction
+
+function! s:AddParent(ident)
+    let ident = a:ident
+    let save_cursor = getpos(".")
+    call cursor(1,1)
+    let import_line = search('^import', '', save_cursor[1])
+    if !search('(', 'n', import_line)
+        let import_endline = import_line
+    else
+        let import_endline = search(')', 'n')
+    endif
+    if search(ident, '', import_endline)
+        let ident = expand('<cWORD>')
+        let ident = ident[1:len(ident)-2]
+    endif
+    call setpos('.', save_cursor)
+    return ident
 endfunction
 
 command! -nargs=* -range -complete=customlist,go#complete#Package Godoc :call s:Godoc(<q-args>)

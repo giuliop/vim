@@ -229,7 +229,7 @@
 
     " Ctrl+s to save and if needed de-highlght search and select autocomplete
     map <C-s> :noh<CR>:w<CR>
-    imap <expr> <C-s>  pumvisible() ? "\<CR><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
+    imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
 
     " Ctrl+q to quit
     map <C-q> :q<CR>
@@ -306,7 +306,7 @@
         hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
         " some convenient mappings
-        imap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+        imap <expr> <Esc>      pumvisible() ? "\<C-y><ESC>" : "\<Esc>"
         "imap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
         "imap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
         "imap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
