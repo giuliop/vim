@@ -238,6 +238,9 @@
     " mm to toggle mouse mde
     map mm :call MouseToggle()<CR>
 
+    "AA in insert mode brings to end of line in insert mode
+    imap AA <ESC>A
+
 " Plugins
 
     " Ctags
@@ -284,7 +287,7 @@
         "let g:yankring_enabled = 0
 
     " TagBar
-        nmap <silent> <leader>tt :TagbarToggle<CR>
+        nmap <silent> tt :TagbarToggle<CR>
 
     " PythonMode
         " Disable if python support not present
