@@ -1,7 +1,7 @@
 " Go specific settings
 
 " reformat golang programs on save
-autocmd InsertLeave *.go :silent Fmt
+autocmd BufWritePost *.go :silent Fmt
 
 " don't show whitespaces for Go and godoc files
 setlocal nolist

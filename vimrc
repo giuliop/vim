@@ -121,31 +121,27 @@
     let mapleader = ","
 
     " normal regex, not Vim's one
-    nmap / /\v
-    vmap / /\v
+    noremap / /\v
 
     " comma to de-highlight search
-    nmap <leader>m :noh<CR>
-    imap <leader>m <ESC>:noh<CR>a
+    nnoremap <leader>m :noh<CR>
+    inoremap <leader>m <ESC>:noh<CR>a
 
     " \ to move around bracket pairs
-    nmap \ %
-    vmap \ %
-
-    " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nmap <S-y> y$
+    nnoremap \ %
+    vnoremap \ %
 
     " Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
+    nnoremap <leader>f0 :set foldlevel=0<CR>
+    nnoremap <leader>f1 :set foldlevel=1<CR>
+    nnoremap <leader>f2 :set foldlevel=2<CR>
+    nnoremap <leader>f3 :set foldlevel=3<CR>
+    nnoremap <leader>f4 :set foldlevel=4<CR>
+    nnoremap <leader>f5 :set foldlevel=5<CR>
+    nnoremap <leader>f6 :set foldlevel=6<CR>
+    nnoremap <leader>f7 :set foldlevel=7<CR>
+    nnoremap <leader>f8 :set foldlevel=8<CR>
+    nnoremap <leader>f9 :set foldlevel=9<CR>
 
     set pastetoggle=<leader>0           " pastetoggle (sane indentation on pastes)
 
@@ -154,92 +150,93 @@
     imap <down> <nop>
     imap <left> <nop>
     imap <right> <nop>
-    nmap j gj
-    nmap k gk
+    nnoremap j gj
+    nnoremap k gk
 
     " No more help staring by mistake
-    map <F1> <ESC>
+    noremap <F1> <ESC>
 
     " Some extra time savers
-    nmap ; :
+    nnoremap ; :
     imap kj <ESC>
 
     " move around with ctrl + movement key
-    nmap <C-h> <C-w>h
-    nmap <C-j> <C-w>j
-    nmap <C-k> <C-w>k
-    nmap <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
 
     " resize with movement key
-    nmap <left> <C-w>2>
-    nmap <down> <C-w>2+
-    nmap <up> <C-w>2-
-    nmap <right> <C-w>2<
+    nnoremap <left> <C-w>2>
+    nnoremap <down> <C-w>2+
+    nnoremap <up> <C-w>2-
+    nnoremap <right> <C-w>2<
 
     " Use Ctrl-W to delete the previous word, Ctrl-U to delete a line, and Ctrl-Y
     " to paste what you've deleted back, all while remaining in insert mode
-    imap <silent> <C-W> <C-\><C-O>db
-    imap <silent> <C-U> <C-\><C-O>d0
-    imap <silent> <C-Y> <C-R>"
+    inoremap <silent> <C-W> <C-\><C-O>db
+    inoremap <silent> <C-U> <C-\><C-O>d0
+    inoremap <silent> <C-Y> <C-R>"
 
     " visual shifting (does not exit Visual mode)
-    vmap < <gv
-    vmap > >gv
+    vnoremap < <gv
+    vnoremap > >gv
 
     " map <leader>ff to display all lines with keyword under cursor and ask which one to jump to
-    nmap <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+    nnoremap <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
     " Easier horizontal scrolling
-    map zl zL
-    map zh zH
+    noremap zl zL
+    noremap zh zH
 
     " use space to replay macro 'q' (qq / q to start/stop recording)
-    nmap <Space> @q
+    nnoremap <Space> @q
 
     " Toggle line numbers and fold column for easy copying
-    nmap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
+    nnoremap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
 
     " Toggle relative and absolute numbering
-    nmap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
+    nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
 
     " allow the . to execute once for each line of a visual selection
-    vmap . :normal .<CR>
+    vnoremap . :normal .<CR>
 
     " For when you forget to sudo.. Really Write the file.
-    map <leader>ww :w !sudo tee % > /dev/null<CR>
+    noremap <leader>ww :w !sudo tee % > /dev/null<CR>
 
     " to save and open current file
-    nmap <leader>o :w<CR>:!open<space>%<CR>
+    nnoremap <leader>o :w<CR>:!open<space>%<CR>
 
     " to open new vertical split with new file
-    nmap <leader>n :vne<CR>
+    nnoremap <leader>n :vne<CR>
 
     " Fast editing of the .vimrc
-    map <leader>e :e! ~/.vim/vimrc<CR>
+    noremap <leader>e :e! ~/.vim/vimrc<CR>
 
     " add blank lines above or below current line in insert mode
-    imap <leader>[ <ESC>m`:put!=''<CR>``a
-    imap <leader>] <ESC>m`:put=''<CR>``a
+    inoremap <leader>[ <ESC>m`:put!=''<CR>``a
+    inoremap <leader>] <ESC>m`:put=''<CR>``a
 
     " open vertical split
-    nmap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>v <C-w>v<C-w>l
 
     " open horizontal split
-    nmap <leader>s <C-w>s<C-w>l
+    nnoremap <leader>s <C-w>s<C-w>l
 
     " Ctrl+s to save and if needed de-highlght search and select autocomplete
-    map <C-s> :noh<CR>:w<CR>
-    imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
+    noremap <C-s> :noh<CR>:w<CR>
+    "imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
+    inoremap <C-s> <ESC>:noh<CR>:w<CR>
 
     " Ctrl+q to quit
-    map <C-q> :q<CR>
-    imap <C-q> <ESC>:q<CR>
+    noremap <C-q> :q<CR>
+    inoremap <C-q> <ESC>:q<CR>
 
     " mm to toggle mouse mde
-    map mm :call MouseToggle()<CR>
+    noremap mm :call MouseToggle()<CR>
 
     "AA in insert mode brings to end of line in insert mode
-    imap AA <ESC>A
+    inoremap AA <ESC>A
 
 " Plugins
 
@@ -250,7 +247,7 @@
          let g:syntastic_javascript_checker='jshint'
 
     " NerdTree
-        map <leader>2 :NERDTreeToggle<CR>
+        noremap <leader>2 :NERDTreeToggle<CR>
         " let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeQuitOnOpen=1
@@ -258,21 +255,14 @@
 
     " Session List
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-        nmap <leader>sl :SessionList<CR>
-        nmap <leader>ss :SessionSave<CR>
+        nnoremap <leader>sl :SessionList<CR>
+        nnoremap <leader>ss :SessionSave<CR>
 
     " Buffer explorer
-        nmap <leader>b :BufExplorer<CR>
-
-    " JSON
-        nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-
-    " PyMode
-        let g:pymode_lint_checker = "pyflakes"
-        let g:pymode_utils_whitespaces = 0
+        nnoremap <leader>b :BufExplorer<CR>
 
     " ctrlp
-        let g:ctrlp_working_path_mode = 'c'
+        let g:ctrlp_working_path_mode = 0
         let g:ctrlp_map = '<c-t>'
         nmap <silent> <C-t> :CtrlPMixed<CR>
         let g:ctrlp_show_hidden = 1
@@ -284,12 +274,13 @@
     " YankRing
         let g:yankring_history_dir = '~/.vim/.dirs'
         let g:yankring_min_element_length = 2
-        "let g:yankring_enabled = 0
 
     " TagBar
-        nmap <silent> tt :TagbarToggle<CR>
+        nnoremap <silent> tt :TagbarToggle<CR>
 
     " PythonMode
+        let g:pymode_lint_checker = "pyflakes"
+        let g:pymode_utils_whitespaces = 0
         " Disable if python support not present
         if !has('python')
            let g:pymode = 1
@@ -309,10 +300,7 @@
         hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
         " some convenient mappings
-        imap <expr> <Esc>      pumvisible() ? "\<C-y><ESC>" : "\<Esc>"
-        "imap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-        "imap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-        "imap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+        imap <expr> <ESC>      pumvisible() ? "\<C-y><ESC>" : "\<ESC>"
         imap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
         imap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 

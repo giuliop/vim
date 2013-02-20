@@ -71,7 +71,7 @@ function! s:Godoc(...)
   let word = join(a:000, ' ')
   if !len(word)
     let word = expand('<cword>')
-    let m = matchlist(getbufline("", line(".")), '\(\w*\)\([/.]\)' . word . '[^-_[:alnum:]]')
+    let m = matchlist(getbufline("", line(".")), '\(\w*\)\([/.]\)' . word . '[^-_[:alnum:]]*')
     if !empty(m)
         if m[2] == "."
             let package = s:AddParent(m[1])
@@ -87,6 +87,7 @@ function! s:Godoc(...)
     return
   endif
   call s:GodocWord(word)
+  "echo word
 endfunction
 
 function! s:AddParent(ident)
