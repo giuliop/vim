@@ -159,6 +159,7 @@
     " Some extra time savers
     nnoremap ; :
     imap kj <ESC>
+    imap <C-c> <ESC>
 
     " move around with ctrl + movement key
     nnoremap <C-h> <C-w>h
@@ -228,9 +229,9 @@
     "imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
     inoremap <C-s> <ESC>:noh<CR>:w<CR>
 
-    " Ctrl+q to quit
-    noremap <C-q> :q<CR>
-    inoremap <C-q> <ESC>:q<CR>
+    " q to quit, qq to quit without saving
+    noremap <leader>q :q<CR>
+    noremap <leader>qq :q!<CR>
 
     " mm to toggle mouse mde
     noremap mm :call MouseToggle()<CR>
@@ -362,6 +363,9 @@
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost vimrc source ~/.vimrc
+
+        " Close autocomplete preview window when leaving insert mode
+        autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
     endif
 
