@@ -8,13 +8,16 @@
             "EasyTags
             "Bundle 'tpope/vim-abolish.git'
             "Bundle 'godlygeek/tabular'
+            "Bundle 'groenewege/vim-less'
+            "Bundle 'leshill/vim-json'
+            "Bundle 'Lokaltog/vim-easymotion'
+            "Bundle 'tpope/vim-fugitive'
 
     " General
             Bundle 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
             Bundle 'scrooloose/nerdtree'
             Bundle 'tpope/vim-surround'
             Bundle 'kien/ctrlp.vim'
-            Bundle 'Lokaltog/vim-easymotion'
             Bundle 'tpope/vim-unimpaired'
             Bundle 'vim-scripts/YankRing.vim'
             Bundle 'matchit.zip'
@@ -30,12 +33,9 @@
             Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
             Bundle 'chriskempson/base16-vim'
             Bundle 'git@bitbucket.org:kisom/eink.vim.git'
-            Bundle 'altercation/vim-colors-solarized'
-            Bundle 'jnurmine/Zenburn'
 
     " General Programming
             Bundle 'scrooloose/syntastic'
-            Bundle 'tpope/vim-fugitive'
             Bundle 'scrooloose/nerdcommenter'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
@@ -46,7 +46,7 @@
             "Bundle 'tomtom/tlib_vim'
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
-            Bundle 'honza/snipmate-snippets'
+            "Bundle 'honza/snipmate-snippets'
 
     " Golang
             Bundle 'jnwhiteh/vim-golang'
@@ -60,11 +60,9 @@
             Bundle 'pythoncomplete'
 
     " Javascript
-            Bundle 'leshill/vim-json'
-            Bundle 'groenewege/vim-less'
             Bundle 'pangloss/vim-javascript'
-            Bundle 'briancollins/vim-jst'
 
     " HTML
+            Bundle 'vim-scripts/indenthtml.vim'
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'

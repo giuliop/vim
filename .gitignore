@@ -1,3 +1,4 @@
 .*
-bundle/
-yankring_history_v2.txt
+!.gitignore
+/bundle/
+/sessions/

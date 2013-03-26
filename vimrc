@@ -50,6 +50,10 @@
     set tabstop=4                   " an indentation every four columns
     set softtabstop=4               " let backspacehhhdelete indent
 
+    " disable automatic commenting of lines after comments and line breaks
+    set formatoptions-=tcro
+    set textwidth=0
+
     " Remove trailing whitespaces and ^M chars
     autocmd FileType javascript,python autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
@@ -70,7 +74,7 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\        " Filename
         set statusline+=%w%h%m%r    " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
+        "set statusline+=%{fugitive#statusline()} " Git Hotness
         set statusline+=\ [%{&ff}/%Y]            " filetype
         set statusline+=\ [%{getcwd()}]          " current dir
         set statusline+=%#warningmsg#
@@ -107,14 +111,15 @@
     endif
 
     set background=dark
-    colorscheme lucius
-    LuciusDarkLowContrast
+    colorscheme giulius
 
     if has('gui_running') && os == 'Mac'
         set guifont=Inconsolata:h16.00
     endif
 
-    hi ColorColumn ctermbg=59 guibg=darkgrey
+    " change color after column 85
+    let &colorcolumn=join(range(85,200),",")
+    hi ColorColumn ctermbg=235 guibg=#2c2d27
 
 " Key (re)Mappings
 
@@ -238,6 +243,9 @@
 
     "AA in insert mode brings to end of line in insert mode
     inoremap AA <ESC>A
+    
+    "Close buffer, not split
+    nnoremap <leader>d :b#<bar>bd#<CR>
 
 " Plugins
 
@@ -253,6 +261,7 @@
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowHidden=1
+        let NERDTreeShowLineNumbers=1
 
     " Session List
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
@@ -272,6 +281,11 @@
                     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
                     \ 'file': '\v\.(swp|so|zip)$', }
 
+    "html indent
+        let g:html_indent_inctags = "html,body,head,tbody"
+        let g:html_indent_script1 = "inc"
+        let g:html_indent_style1 = "inc"
+
     " YankRing
         let g:yankring_history_dir = '~/.vim/.dirs'
         let g:yankring_min_element_length = 2
@@ -287,14 +301,6 @@
            let g:pymode = 1
         endif
 
-    " Fugitive
-        nmap <silent> <leader>gs :Gstatus<CR>
-        nmap <silent> <leader>gd :Gdiff<CR>
-        nmap <silent> <leader>gc :Gcommit<CR>
-        nmap <silent> <leader>gb :Gblame<CR>
-        nmap <silent> <leader>gl :Glog<CR>
-        nmap <silent> <leader>gp :Git push<CR>
-
     " OmniComplete
         hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
         hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
@@ -306,13 +312,14 @@
         imap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
         " automatically open and close the popup menu / preview window
-        "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set completeopt=menu,menuone,preview,longest
+        au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        set completeopt=menu,menuone,longest
 
     " neocomplcache
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_enable_smart_case = 1
         let g:neocomplcache_enable_auto_delimiter = 1
+        let g:neocomplcache_enable_camel_case_completion = 1 
         let g:neocomplcache_max_list = 15
         let g:neocomplcache_force_overwrite_completefunc = 1
         let g:neocomplcache_temporary_dir = '~/.vim/.dirs/.neocon'
@@ -335,13 +342,20 @@
         imap <expr><C-y> neocomplcache#close_popup()
 
         " Enable omni completion.
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+        " Enable heavy omni completion, which require computational power and may stall vim
+        if !exists('g:neocomplcache_omni_patterns')
+            let g:neocomplcache_omni_patterns = {}
+        endif
+        "let g:neocomplcache_omni_patterns.javascript = '[^. *\t]\w*\|[^. *\t]\.\%(\h\w*\)\?'
+        let g:neocomplcache_omni_patterns.javascript = '[^. *\t;\)''"{}]\w*\|[^. *\t]\.\%(\h\w*\)\?'
 
         " use honza's snippets
-        let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+        "let g:neosnippet#snippets_directory='~/.vim/my-vim-bundle/snippets/'
 
         " For snippet_complete marker.
         if has('conceal')
@@ -351,10 +365,6 @@
 
 " Automatic commands
 
-    if has("autocmd")
-        " disable automatic commenting of lines after comments
-        autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
         " always switch to the current file directory.
         autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
@@ -363,11 +373,6 @@
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost vimrc source ~/.vimrc
-
-        " Close autocomplete preview window when leaving insert mode
-        autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
-
-    endif
 
 " Functions
 
