@@ -229,7 +229,7 @@
     " open horizontal split
     nnoremap <leader>s <C-w>s<C-w>l
 
-    " Ctrl+s to save and if needed de-highlght search and select autocomplete
+    " Ctrl+s to save and if needed de-highlight search and select autocomplete
     noremap <C-s> :noh<CR>:w<CR>
     "imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
     inoremap <C-s> <ESC>:noh<CR>:w<CR>
@@ -243,7 +243,7 @@
 
     "AA in insert mode brings to end of line in insert mode
     inoremap AA <ESC>A
-    
+
     "Close buffer, not split
     nnoremap <leader>d :b#<bar>bd#<CR>
 
