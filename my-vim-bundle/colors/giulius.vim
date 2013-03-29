@@ -143,7 +143,8 @@ let s:normal_items = [
             \ "Special", "SpecialKey", "Statement", "StatusLineNC", "TabLine",
             \ "TabLineFill", "Todo", "Type", "VertSplit", "Visual",
             \ "WarningMsg", "WildMenu",
-            \ "htmlTag", "htmlEndTag", "htmlArg", "htmlTagName", "htmlSpecialChar"
+            \ "htmlTag", "htmlEndTag", "htmlArg", "htmlTagName", "htmlSpecialChar",
+            \ "javaScriptFuncArg",
             \ ]
 
 let s:bold_items = [
@@ -195,6 +196,7 @@ let g:colors_name="giulius"
 hi ModeMsg      guifg=fg
 hi Question     guifg=fg
 hi NonText      guifg=#5f5f87
+hi NonText                      guibg=#262626
 hi SpecialKey   guifg=#5f875f
 hi Comment      guifg=#6c6c6c
 "hi Constant     guifg=#87af5f
@@ -218,6 +220,7 @@ hi htmlArg      guifg=#af87af
 hi htmlTagName  guifg=#5fafd7
 hi htmlSpecialChar guifg=#d75f5f
 
+hi javaScriptFuncArg guifg=#87af5f
 " ----------------------------------------------------------------------------
 " Highlighting:
 " ----------------------------------------------------------------------------
@@ -264,7 +267,7 @@ hi StatusLine   guifg=bg
 hi TabLine      guifg=bg
 hi TabLineSel   guifg=fg
 hi WildMenu     guifg=fg
-hi ColorColumn                  guibg=#87875f
+hi ColorColumn                  guibg=#262626
 hi CursorLineNr guifg=#626262   guibg=#444444
 hi FoldColumn                   guibg=#4e4e4e
 hi Folded                       guibg=#4e4e4e

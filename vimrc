@@ -101,7 +101,6 @@
     set list                        " show char listed below in listchars
     set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
     set gdefault                    " apply global substitution to all occurrences in lines
-    set colorcolumn=85              " show column to highlight long lines
     set splitright                  " new windows opens to the right
 
 " Graphics
@@ -119,7 +118,6 @@
 
     " change color after column 85
     let &colorcolumn=join(range(85,200),",")
-    hi ColorColumn ctermbg=235 guibg=#2c2d27
 
 " Key (re)Mappings
 
