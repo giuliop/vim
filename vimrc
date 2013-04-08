@@ -229,7 +229,6 @@
 
     " Ctrl+s to save and if needed de-highlight search and select autocomplete
     noremap <C-s> :noh<CR>:w<CR>
-    "imap <expr> <C-s>  pumvisible() ? "\<C-y><ESC>:noh<CR>:w<CR>" : "\<ESC>:noh<CR>:w<CR>"
     inoremap <C-s> <ESC>:noh<CR>:w<CR>
 
     " q to quit, qq to quit without saving
@@ -305,9 +304,9 @@
         hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
         " some convenient mappings
-        imap <expr> <ESC>      pumvisible() ? "\<C-y><ESC>" : "\<ESC>"
-        imap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-        imap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+        imap <expr> <ESC>       pumvisible() ? "\<C-y><ESC>" : "\<ESC>"
+        imap <expr> <C-d>       pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+        imap <expr> <C-u>       pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
         " automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -350,7 +349,7 @@
             let g:neocomplcache_omni_patterns = {}
         endif
         "let g:neocomplcache_omni_patterns.javascript = '[^. *\t]\w*\|[^. *\t]\.\%(\h\w*\)\?'
-        let g:neocomplcache_omni_patterns.javascript = '[^. *\t;\)''"{}]\w*\|[^. *\t]\.\%(\h\w*\)\?'
+        let g:neocomplcache_omni_patterns.javascript = '[^. *\t;=\)''"{}]\w*\|[^. *\t]\.\%(\h\w*\)\?'
 
         " use honza's snippets
         "let g:neosnippet#snippets_directory='~/.vim/my-vim-bundle/snippets/'
