@@ -24,7 +24,7 @@
             Bundle 'vim-scripts/restore_view.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'vim-scripts/bufexplorer.zip'
-            Bundle 'Townk/vim-autoclose'
+            "Bundle 'Townk/vim-autoclose'
 
     "Colors
 
