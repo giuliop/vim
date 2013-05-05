@@ -130,9 +130,9 @@
     nnoremap <leader>m :noh<CR>
     inoremap <leader>m <ESC>:noh<CR>a
 
-    " \ to move around bracket pairs
-    nnoremap \ %
-    vnoremap \ %
+    " Tab to move around bracket pairs
+    nnoremap <Tab> %
+    vnoremap <Tab> %
 
     " Code folding options
     nnoremap <leader>f0 :set foldlevel=0<CR>
