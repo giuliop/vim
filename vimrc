@@ -117,7 +117,7 @@
     endif
 
     " change color after column 85
-    let &colorcolumn=join(range(85,200),",")
+    let &colorcolumn=join(range(85,300),",")
 
 " Key (re)Mappings
 
