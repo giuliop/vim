@@ -4,10 +4,11 @@
 
 syntax case match
 
-syntax region goTagBlock matchgroup=NONE start="{{" end="}}" containedin=ALLBUT,Comment
-syntax region Comment matchgroup=NONE start="/\*" end="\*/" containedin=goTagBlock
+syntax region TriplePar matchgroup=NONE start="{{{" end="}}}" containedin=ALLBUT,Comment
+syntax region DoublePar matchgroup=NONE start="{{" end="}}" containedin=ALLBUT,Comment
+syntax region Comment matchgroup=NONE start="/\*" end="\*/" containedin=DoublePar,TriplePar
 
-highlight link goTagBlock Visual
+highlight link doublePar Visual
 
 " {{{ Highlight erroneous whitespace
 " Lifted from http://vim.wikia.com/wiki/Highlight_unwanted_spaces
@@ -23,5 +24,5 @@ syn match ExtraWhitespace "\s\+$\| \+\ze\t"
 syn match ExtraWhitespace "[^\t]\zs\t\+" containedin=ALL
 
 " Show spaces used for indenting (use only tabs for indenting).
-syn match ExtraWhitespace "^\t*\zs \+" containedin=ALL
+"syn match ExtraWhitespace "^\t*\zs \+" containedin=ALL
 " }}}
