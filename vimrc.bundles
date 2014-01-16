@@ -27,9 +27,9 @@
 
     "Colors
 
-            Bundle 'godlygeek/csapprox'
+            "Bundle 'godlygeek/csapprox'
             Bundle 'jonathanfilip/vim-lucius'
-            Bundle 'flazz/vim-colorschemes'
+            "Bundle 'flazz/vim-colorschemes'
             Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
             Bundle 'chriskempson/base16-vim'
             Bundle 'git@bitbucket.org:kisom/eink.vim.git'
@@ -45,7 +45,7 @@
             "Bundle 'MarcWeber/vim-addon-mw-utils'
             "Bundle 'tomtom/tlib_vim'
             Bundle 'Shougo/neocomplcache'
-            Bundle 'Shougo/neosnippet'
+            "Bundle 'Shougo/neosnippet'
             "Bundle 'honza/snipmate-snippets'
 
     " Golang
@@ -54,10 +54,10 @@
 
     " Python
             " Pick either python-mode or pyflakes & pydoc
-            Bundle 'klen/python-mode'
-            Bundle 'python.vim'
-            Bundle 'python_match.vim'
-            Bundle 'pythoncomplete'
+            "Bundle 'klen/python-mode'
+            "Bundle 'python.vim'
+            "Bundle 'python_match.vim'
+            "Bundle 'pythoncomplete'
 
     " Javascript
             Bundle 'pangloss/vim-javascript'
