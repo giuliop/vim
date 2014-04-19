@@ -32,7 +32,7 @@
             "Bundle 'flazz/vim-colorschemes'
             Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
             Bundle 'chriskempson/base16-vim'
-            Bundle 'git@bitbucket.org:kisom/eink.vim.git'
+            "Bundle 'git@bitbucket.org:kisom/eink.vim.git'
 
     " General Programming
             Bundle 'scrooloose/syntastic'
@@ -66,3 +66,8 @@
             Bundle 'vim-scripts/indenthtml.vim'
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
+
+    " Haskell
+            Bundle 'lukerandall/haskellmode-vim'
+            Bundle 'eagletmt/ghcmod-vim'
+            Bundle 'eagletmt/neco-ghc'
