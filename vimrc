@@ -369,7 +369,7 @@
         autocmd FileType html setlocal noexpandtab shiftwidth=2 tabstop=2 softtabstop=2 nowrap nolist
 
         " When vimrc is edited, reload it
-        autocmd! bufwritepost vimrc source ~/.vimrc
+        autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
 " Functions
 
