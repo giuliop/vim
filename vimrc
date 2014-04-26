@@ -146,7 +146,7 @@
     nnoremap <leader>f8 :set foldlevel=8<CR>
     nnoremap <leader>f9 :set foldlevel=9<CR>
 
-    set pastetoggle=<leader>0           " pastetoggle (sane indentation on pastes)
+    set pastetoggle=<leader>-           " pastetoggle (sane indentation on pastes)
 
     " Disable arrow keys and sane up and down
     imap <up> <nop>
@@ -282,6 +282,10 @@
         let g:html_indent_inctags = "html,body,head,tbody"
         let g:html_indent_script1 = "inc"
         let g:html_indent_style1 = "inc"
+
+    " vim-hdevtools (haskell)
+        au FileType haskell nnoremap <buffer> <leader>0 :HdevtoolsType<CR>
+        au FileType haskell nnoremap <buffer> <silent> <leader>9 :HdevtoolsClear<CR>
 
     " YankRing
         let g:yankring_history_dir = '~/.vim/.dirs'
