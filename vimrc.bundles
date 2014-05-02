@@ -68,6 +68,5 @@
             Bundle 'hail2u/vim-css3-syntax'
 
     " Haskell
-            Bundle 'lukerandall/haskellmode-vim'
-            Bundle 'eagletmt/ghcmod-vim'
-            Bundle 'eagletmt/neco-ghc'
+            Bundle 'bitc/hdevtools'
+            Bundle 'bitc/vim-hdevtools'
