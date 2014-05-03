@@ -246,11 +246,36 @@
 
 " Plugins
 
+    " Buffer explorer
+        nnoremap <leader>b :BufExplorer<CR>
+
     " Ctags
         set tags=./tags;/,~/.vimtags
 
-    " Syntastic
-         let g:syntastic_javascript_checker='jshint'
+    " ctrlp
+        let g:ctrlp_working_path_mode = 0
+        let g:ctrlp_map = '<c-t>'
+        nmap <silent> <C-t> :CtrlPMixed<CR>
+        let g:ctrlp_show_hidden = 1
+        set wildignore+=*/..*
+        let g:ctrlp_custom_ignore = {
+                    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                    \ 'file': '\v\.(swp|so|zip)$', }
+
+    "easy-align
+        " Start interactive EasyAlign in visual mode
+        vmap <Enter> <Plug>(EasyAlign)
+        " Start interactive EasyAlign with a Vim movement
+        nmap <Leader>a <Plug>(EasyAlign)
+
+    "html indent
+        let g:html_indent_inctags = "html,body,head,tbody"
+        let g:html_indent_script1 = "inc"
+        let g:html_indent_style1 = "inc"
+
+    " Hdevtools (haskell)
+        au FileType haskell nnoremap <buffer> <leader>0 :HdevtoolsType<CR>
+        au FileType haskell nnoremap <buffer> <silent> <leader>9 :HdevtoolsClear<CR>
 
     " NerdTree
         noremap <leader>2 :NERDTreeToggle<CR>
@@ -265,42 +290,12 @@
         nnoremap <leader>sl :SessionList<CR>
         nnoremap <leader>ss :SessionSave<CR>
 
-    " Buffer explorer
-        nnoremap <leader>b :BufExplorer<CR>
-
-    " ctrlp
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_map = '<c-t>'
-        nmap <silent> <C-t> :CtrlPMixed<CR>
-        let g:ctrlp_show_hidden = 1
-        set wildignore+=*/..*
-        let g:ctrlp_custom_ignore = {
-                    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-                    \ 'file': '\v\.(swp|so|zip)$', }
-
-    "html indent
-        let g:html_indent_inctags = "html,body,head,tbody"
-        let g:html_indent_script1 = "inc"
-        let g:html_indent_style1 = "inc"
-
-    " vim-hdevtools (haskell)
-        au FileType haskell nnoremap <buffer> <leader>0 :HdevtoolsType<CR>
-        au FileType haskell nnoremap <buffer> <silent> <leader>9 :HdevtoolsClear<CR>
-
-    " YankRing
-        let g:yankring_history_dir = '~/.vim/.dirs'
-        let g:yankring_min_element_length = 2
+    " Syntastic
+         let g:syntastic_javascript_checker='jshint'
+         let g:syntastic_haskell_ghc_mod_args = '-g -fno-warn-missing-signatures' "no missing signature warning
 
     " TagBar
         nnoremap <silent> tt :TagbarToggle<CR>
-
-    " PythonMode
-        let g:pymode_lint_checker = "pyflakes"
-        let g:pymode_utils_whitespaces = 0
-        " Disable if python support not present
-        if !has('python')
-           let g:pymode = 1
-        endif
 
     " OmniComplete
         hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
