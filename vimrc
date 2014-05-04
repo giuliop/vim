@@ -267,6 +267,7 @@
         vmap <Enter> <Plug>(EasyAlign)
         " Start interactive EasyAlign with a Vim movement
         nmap <Leader>a <Plug>(EasyAlign)
+        nmap <Leader>= <Leader>a}=
 
     "html indent
         let g:html_indent_inctags = "html,body,head,tbody"
