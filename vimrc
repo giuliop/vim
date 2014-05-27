@@ -124,7 +124,7 @@
     let mapleader = ","
 
     " normal regex, not Vim's one
-    noremap / /\v
+    "noremap / /\v
 
     " comma to de-highlight search
     nnoremap <leader>m :noh<CR>
