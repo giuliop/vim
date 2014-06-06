@@ -359,6 +359,8 @@
             set conceallevel=2 concealcursor=i
         endif
 
+        "vim-go
+        let g:go_bin_path = "/home/gws/.vim/bundle/vim-go/bin"
 
 " Automatic commands
 
@@ -370,6 +372,15 @@
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost vimrc source ~/.vim/vimrc
+
+        " golang commands courtesy of vim-go
+        au FileType go nmap <Leader>i <Plug>(go-info)
+        au FileType go nmap <leader>g <Plug>(go-run)
+        au FileType go nmap <leader>b <Plug>(go-build)
+        au FileType go nmap <leader>t <Plug>(go-test)
+        au FileType go nmap <Leader>d <Plug>(go-doc-vertical)
+        au FileType go nmap <Leader>ds <Plug>(go-def-split)
+        au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 
 " Functions
 
