@@ -2,72 +2,45 @@
     " Vundle to rule them all
             Bundle 'gmarik/vundle'
 
-    " To try...
-            "Bundle 'polu/dwm.vim'
-            "Bundle 'Lokaltog/vim-powerline'
-            "EasyTags
-            "Bundle 'tpope/vim-abolish.git'
-            "Bundle 'godlygeek/tabular'
-            "Bundle 'groenewege/vim-less'
-            "Bundle 'leshill/vim-json'
-            "Bundle 'Lokaltog/vim-easymotion'
-            "Bundle 'tpope/vim-fugitive'
+    "" General
+            "Bundle 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
+            "Bundle 'scrooloose/nerdtree'
+            "Bundle 'tpope/vim-surround'
+            "Bundle 'kien/ctrlp.vim'
+            "Bundle 'tpope/vim-unimpaired'
+            "Bundle 'matchit.zip'
+            "Bundle 'vim-scripts/restore_view.vim'
+            "Bundle 'vim-scripts/sessionman.vim'
+            "Bundle 'vim-scripts/bufexplorer.zip'
+            "Bundle 'junegunn/vim-easy-align'
 
-    " General
-            Bundle 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
-            Bundle 'scrooloose/nerdtree'
-            Bundle 'tpope/vim-surround'
-            Bundle 'kien/ctrlp.vim'
-            Bundle 'tpope/vim-unimpaired'
-            Bundle 'matchit.zip'
-            Bundle 'vim-scripts/restore_view.vim'
-            Bundle 'vim-scripts/sessionman.vim'
-            Bundle 'vim-scripts/bufexplorer.zip'
-            Bundle 'junegunn/vim-easy-align'
-            "Bundle 'Townk/vim-autoclose'
+    ""Colors
+            "Bundle 'jonathanfilip/vim-lucius'
+            "Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
+            "Bundle 'chriskempson/base16-vim'
 
-    "Colors
+    "" General Programming
+            "Bundle 'scrooloose/syntastic'
+            "Bundle 'scrooloose/nerdcommenter'
+            "if executable('ctags')
+                "Bundle 'majutsushi/tagbar'
+            "endif
 
-            "Bundle 'godlygeek/csapprox'
-            Bundle 'jonathanfilip/vim-lucius'
-            "Bundle 'flazz/vim-colorschemes'
-            Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
-            Bundle 'chriskempson/base16-vim'
-            "Bundle 'git@bitbucket.org:kisom/eink.vim.git'
+    "" Snippets & AutoComplete
+            "Bundle 'Valloric/YouCompleteMe'
 
-    " General Programming
-            Bundle 'scrooloose/syntastic'
-            Bundle 'scrooloose/nerdcommenter'
-            if executable('ctags')
-                Bundle 'majutsushi/tagbar'
-            endif
+    "" Golang
+            "Bundle 'fatih/vim-go'
 
-    " Snippets & AutoComplete
-            "Bundle 'MarcWeber/vim-addon-mw-utils'
-            "Bundle 'tomtom/tlib_vim'
-            Bundle 'Shougo/neocomplcache'
-            "Bundle 'Shougo/neosnippet'
-            "Bundle 'honza/snipmate-snippets'
+    "" Javascript
+            "Bundle 'pangloss/vim-javascript'
 
-    " Golang
-            Bundle 'jnwhiteh/vim-golang'
-            Bundle 'nsf/gocode' , {'rtp': 'vim/'}
+    "" HTML
+            "Bundle 'vim-scripts/indenthtml.vim'
+            "Bundle 'amirh/HTML-AutoCloseTag'
+            "Bundle 'hail2u/vim-css3-syntax'
 
-    " Python
-            " Pick either python-mode or pyflakes & pydoc
-            "Bundle 'klen/python-mode'
-            "Bundle 'python.vim'
-            "Bundle 'python_match.vim'
-            "Bundle 'pythoncomplete'
-
-    " Javascript
-            Bundle 'pangloss/vim-javascript'
-
-    " HTML
-            Bundle 'vim-scripts/indenthtml.vim'
-            Bundle 'amirh/HTML-AutoCloseTag'
-            Bundle 'hail2u/vim-css3-syntax'
-
-    " Haskell
-            Bundle 'bitc/hdevtools'
-            Bundle 'bitc/vim-hdevtools'
+    "" Haskell
+            "Bundle 'bitc/hdevtools'
+            "Bundle 'bitc/vim-hdevtools'
+            ""Bundle 'lukerandall/haskellmode-vim'
