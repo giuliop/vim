@@ -312,55 +312,12 @@
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
         set completeopt=menu,menuone,longest
 
-    " neocomplcache
-        let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_smart_case = 1
-        let g:neocomplcache_enable_auto_delimiter = 1
-        let g:neocomplcache_enable_camel_case_completion = 1 
-        let g:neocomplcache_max_list = 15
-        let g:neocomplcache_force_overwrite_completefunc = 1
-        let g:neocomplcache_temporary_dir = '~/.vim/.dirs/.neocon'
+    "YCM"
+    let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
-        " Define dictionary.
-        let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-        " Plugin key-mappings.
-        imap <C-k> <Plug>(neosnippet_expand_or_jump)
-        smap <C-k> <Plug>(neosnippet_expand_or_jump)
-        imap <expr><C-g> neocomplcache#undo_completion()
-        imap <expr><C-l> neocomplcache#complete_common_string()
-
-        " <C-h>, <BS>: close popup and delete backword char.
-        imap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        imap <expr><C-y> neocomplcache#close_popup()
-
-        " Enable omni completion.
-        "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-        " Enable heavy omni completion, which require computational power and may stall vim
-        if !exists('g:neocomplcache_omni_patterns')
-            let g:neocomplcache_omni_patterns = {}
-        endif
-        "let g:neocomplcache_omni_patterns.javascript = '[^. *\t]\w*\|[^. *\t]\.\%(\h\w*\)\?'
-        let g:neocomplcache_omni_patterns.javascript = '[^. *\t;=\)''"{}]\w*\|[^. *\t]\.\%(\h\w*\)\?'
-
-        " use honza's snippets
-        "let g:neosnippet#snippets_directory='~/.vim/my-vim-bundle/snippets/'
-
-        " For snippet_complete marker.
-        if has('conceal')
-            set conceallevel=2 concealcursor=i
-        endif
-
-        "vim-go
-        let g:go_bin_path = "/home/gws/.vim/bundle/vim-go/bin"
+    "vim-go
+    let g:go_bin_path = "/home/gws/.vim/bundle/vim-go/bin"
 
 " Automatic commands
 
