@@ -316,7 +316,11 @@
     let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
     "vim-go
-    let g:go_bin_path = "./bundle/vim-go/bin"
+    if os == 'Mac'
+        let g:go_bin_path = "/Users/giulio/.vim/bundle/vim-go/bin"
+    else
+        let g:go_bin_path = "/home/gws/.vim/bundle/vim-go/bin"
+    endif
 
 " Automatic commands
 

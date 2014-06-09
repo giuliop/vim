@@ -1,5 +1,9 @@
     " General
-            Plugin 'file:///home/gws/.vim' , {'rtp': 'my-vim-bundle/'}
+            if os == 'Mac'
+                Plugin 'file:///Users/giulio/.vim' , {'rtp': 'my-vim-bundle/'}
+            else
+                Plugin 'file:///home/gws/.vim' , {'rtp': 'my-vim-bundle/'}
+            endif
             Plugin 'scrooloose/nerdtree'
             Plugin 'tpope/vim-surround'
             Plugin 'kien/ctrlp.vim'
