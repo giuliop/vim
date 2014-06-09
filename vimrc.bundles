@@ -26,7 +26,7 @@
             Plugin 'Valloric/YouCompleteMe'
 
     " Golang
-            "Plugin 'fatih/vim-go'
+            Plugin 'fatih/vim-go'
 
     " Javascript
             Plugin 'pangloss/vim-javascript'
