@@ -316,7 +316,7 @@
     let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
     "vim-go
-    let g:go_bin_path = "/home/gws/.vim/bundle/vim-go/bin"
+    let g:go_bin_path = "./bundle/vim-go/bin"
 
 " Automatic commands
 
