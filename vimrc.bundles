@@ -1,46 +1,42 @@
-" Bundles {
-    " Vundle to rule them all
-            Bundle 'gmarik/vundle'
+    " General
+            Plugin 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
+            Plugin 'scrooloose/nerdtree'
+            Plugin 'tpope/vim-surround'
+            Plugin 'kien/ctrlp.vim'
+            Plugin 'tpope/vim-unimpaired'
+            Plugin 'matchit.zip'
+            Plugin 'vim-scripts/restore_view.vim'
+            Plugin 'vim-scripts/sessionman.vim'
+            Plugin 'vim-scripts/bufexplorer.zip'
+            Plugin 'junegunn/vim-easy-align'
 
-    "" General
-            "Bundle 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
-            "Bundle 'scrooloose/nerdtree'
-            "Bundle 'tpope/vim-surround'
-            "Bundle 'kien/ctrlp.vim'
-            "Bundle 'tpope/vim-unimpaired'
-            "Bundle 'matchit.zip'
-            "Bundle 'vim-scripts/restore_view.vim'
-            "Bundle 'vim-scripts/sessionman.vim'
-            "Bundle 'vim-scripts/bufexplorer.zip'
-            "Bundle 'junegunn/vim-easy-align'
+    "Colors
+            Plugin 'jonathanfilip/vim-lucius'
+            Plugin 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
+            Plugin 'chriskempson/base16-vim'
 
-    ""Colors
-            "Bundle 'jonathanfilip/vim-lucius'
-            "Bundle 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
-            "Bundle 'chriskempson/base16-vim'
+    " General Programming
+            Plugin 'scrooloose/syntastic'
+            Plugin 'scrooloose/nerdcommenter'
+            if executable('ctags')
+                Plugin 'majutsushi/tagbar'
+            endif
 
-    "" General Programming
-            "Bundle 'scrooloose/syntastic'
-            "Bundle 'scrooloose/nerdcommenter'
-            "if executable('ctags')
-                "Bundle 'majutsushi/tagbar'
-            "endif
+    " Snippets & AutoComplete
+            Plugin 'Valloric/YouCompleteMe'
 
-    "" Snippets & AutoComplete
-            "Bundle 'Valloric/YouCompleteMe'
+    " Golang
+            "Plugin 'fatih/vim-go'
 
-    "" Golang
-            "Bundle 'fatih/vim-go'
+    " Javascript
+            Plugin 'pangloss/vim-javascript'
 
-    "" Javascript
-            "Bundle 'pangloss/vim-javascript'
+    " HTML
+            Plugin 'vim-scripts/indenthtml.vim'
+            Plugin 'amirh/HTML-AutoCloseTag'
+            Plugin 'hail2u/vim-css3-syntax'
 
-    "" HTML
-            "Bundle 'vim-scripts/indenthtml.vim'
-            "Bundle 'amirh/HTML-AutoCloseTag'
-            "Bundle 'hail2u/vim-css3-syntax'
-
-    "" Haskell
-            "Bundle 'bitc/hdevtools'
-            "Bundle 'bitc/vim-hdevtools'
-            ""Bundle 'lukerandall/haskellmode-vim'
+    " Haskell
+            Plugin 'bitc/hdevtools'
+            Plugin 'bitc/vim-hdevtools'
+            "Plugin 'lukerandall/haskellmode-vim'

@@ -7,28 +7,27 @@
     set ttyfast                     "Indicates a fast terminal connection
 
     " Determine OS
-        let os=substitute(system('uname'), '\n', '', '')
-        if os == 'Darwin' || os == 'Mac'
-            let os='Mac'
-        endif
+    let os=substitute(system('uname'), '\n', '', '')
+    if os == 'Darwin' || os == 'Mac'
+        let os='Mac'
+    endif
 
 " Setup Bundle Support through Vundle
-" The next three lines ensure that the ~/.vim/bundle/ system works
-    filetype on
     filetype off
-    set rtp+=~/.vim/bundle/vundle
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
 
-" Use bundles config file
+    Plugin 'gmarik/Vundle.vim'
+    " Use bundles config file
     if filereadable(expand("~/.vim/vimrc.bundles"))
         source ~/.vim/vimrc.bundles
     endif
+    call vundle#end()
+    filetype plugin indent on       " Automatically detect file types.
 
 " System
-    filetype plugin indent on       " Automatically detect file types.
     syntax enable                       " syntax highlighting
     scriptencoding utf-8
-
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter') use :file! to see full message
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
     set history=1000                " Store a ton of history (default is 20)
