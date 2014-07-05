@@ -8,4 +8,4 @@ autocmd FileType godoc setlocal nolist
 map <leader>; ^f=i:<ESC>
 
 " if err != nil snippet
-map <leader>6 iif err != nil {<CR>return err<CR>}<ESC>
+map <leader>6 oif err != nil {<CR>return err<CR>}<ESC>kk3=jjj

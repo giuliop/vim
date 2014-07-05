@@ -339,7 +339,7 @@
         " golang commands courtesy of vim-go
         au FileType go nmap <Leader>i <Plug>(go-info)
         au FileType go nmap <leader>g <Plug>(go-run)
-        au FileType go nmap <leader>b <Plug>(go-build)
+        au FileType go nmap <leader>gb <Plug>(go-build)
         au FileType go nmap <leader>t <Plug>(go-test)
         au FileType go nmap <Leader>d <Plug>(go-doc-vertical)
         au FileType go nmap <Leader>ds <Plug>(go-def-split)
