@@ -164,7 +164,6 @@
 
     " Some extra time savers
     nnoremap ; :
-    imap kj <ESC>
     imap <C-c> <ESC>
 
     " move around with ctrl + movement key
@@ -179,11 +178,10 @@
     nnoremap <up> <C-w>2-
     nnoremap <right> <C-w>2<
 
-    " Use Ctrl-W to delete the previous word, Ctrl-U to delete a line, and Ctrl-Y
-    " to paste what you've deleted back, all while remaining in insert mode
+    " Ctrl-W to delete the previous word, Ctrl-U to delete to start of line
+    " all while remaining in insert mode
     inoremap <silent> <C-W> <C-\><C-O>db
     inoremap <silent> <C-U> <C-\><C-O>d0
-    inoremap <silent> <C-Y> <C-R>"
 
     " visual shifting (does not exit Visual mode)
     vnoremap < <gv
@@ -307,13 +305,13 @@
         hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
         " some convenient mappings
-        imap <expr> <ESC>       pumvisible() ? "\<C-y><ESC>" : "\<ESC>"
-        imap <expr> <C-d>       pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-        imap <expr> <C-u>       pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+        "imap <expr> <ESC>       pumvisible() ? "\<C-y><ESC>" : "\<ESC>"
+        "imap <expr> <C-d>       pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+        "imap <expr> <C-u>       pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
         " automatically open and close the popup menu / preview window
-        au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set completeopt=menu,menuone,longest
+        "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        set completeopt=menuone
 
     "YCM"
     let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
