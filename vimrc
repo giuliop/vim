@@ -32,7 +32,7 @@
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
     set history=1000                " Store a ton of history (default is 20)
     set hidden                      " allow buffer switching without saving
-    set viminfo='100,<100,:20,%,n~/.vim/.dirs/.viminfo
+    set viminfo='100,<100,:20,%,h,n~/.vim/.dirs/.viminfo
 
     " Setting up the directories
     set backup                      " backups are nice
@@ -332,6 +332,9 @@
 
         " When vimrc is edited, reload it
         autocmd! bufwritepost vimrc source ~/.vim/vimrc
+
+        " Jump to last cursor position when opening file
+        :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
         " golang commands courtesy of vim-go
         au FileType go nmap <Leader>i <Plug>(go-info)
