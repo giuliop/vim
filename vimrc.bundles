@@ -30,7 +30,9 @@
             Plugin 'Valloric/YouCompleteMe'
 
     " Golang
-            Plugin 'fatih/vim-go'
+            if executable('go')
+                Plugin 'fatih/vim-go'
+            endif
 
     " Javascript
             Plugin 'pangloss/vim-javascript'
