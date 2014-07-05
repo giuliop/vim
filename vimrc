@@ -73,11 +73,15 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\        " Filename
         set statusline+=%w%h%m%r    " Options
-        "set statusline+=%{fugitive#statusline()} " Git Hotness
+        if exists("*fugitive#statusline")
+            set statusline+=%{fugitive#statusline()} " Git Hotness
+        endif
         set statusline+=\ [%{&ff}/%Y]            " filetype
         set statusline+=\ [%{getcwd()}]          " current dir
         set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
+        if exists("*SyntasticStatuslineFlag")
+            set statusline+=%{SyntasticStatuslineFlag()}
+        endif
         set statusline+=%*
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
     endif
@@ -109,7 +113,7 @@
     endif
 
     set background=dark
-    colorscheme giulius
+    silent! colorscheme giulius
 
     if has('gui_running') && os == 'Mac'
         set guifont=Inconsolata:h16.00
