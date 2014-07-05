@@ -32,6 +32,7 @@
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
     set history=1000                " Store a ton of history (default is 20)
     set hidden                      " allow buffer switching without saving
+    set viminfo='100,<100,:20,%,n~/.vim/.dirs/.viminfo
 
     " Setting up the directories
     set backup                      " backups are nice
