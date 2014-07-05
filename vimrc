@@ -363,12 +363,11 @@
             let directory = parent . '/' . prefix . dirname . "/"
             if exists("*mkdir")
                 if !isdirectory(directory)
-                    call mkdir(directory)
+                    call mkdir(directory, "p")
                 endif
             endif
             if !isdirectory(directory)
                 echo "Warning: Unable to create backup directory: " . directory
-                echo "Try: mkdir -p " . directory
             else
                 let directory = substitute(directory, " ", "\\\\ ", "g")
                 exec "set " . settingname . "=" . directory
