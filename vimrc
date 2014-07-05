@@ -319,6 +319,7 @@
 
     "vim-go
         let g:go_bin_path = $HOME . '/.vim/bundle/vim-go/bin'
+        let g:go_fmt_fail_silently = 1
 
 " Automatic commands
 
