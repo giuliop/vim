@@ -11,8 +11,8 @@
 
     "Colors
             Plugin 'jonathanfilip/vim-lucius'
-            Plugin 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
-            Plugin 'chriskempson/base16-vim'
+            "Plugin 'chriskempson/tomorrow-theme' , {'rtp': 'vim/'}
+            "Plugin 'chriskempson/base16-vim'
 
     " General Programming
             Plugin 'scrooloose/syntastic'
@@ -38,6 +38,6 @@
             Plugin 'hail2u/vim-css3-syntax'
 
     " Haskell
-            Plugin 'bitc/hdevtools'
-            Plugin 'bitc/vim-hdevtools'
+            "Plugin 'bitc/hdevtools'
+            "Plugin 'bitc/vim-hdevtools'
             "Plugin 'lukerandall/haskellmode-vim'
