@@ -173,8 +173,7 @@ hi clear Normal
 hi Normal gui=none cterm=none term=none
 
 hi Normal       guifg=#bcbcbc
-"hi Normal                       guibg=#303030
-hi Normal                       guibg=#262626
+hi Normal                       guibg=#303030
 
 call s:AddCterm("Normal")
 
