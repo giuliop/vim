@@ -121,7 +121,7 @@
     endif
 
     " change color after column 85
-    "let &colorcolumn=join(range(85,300),",")
+    let &colorcolumn=join(range(85,300),",")
 
 " Key (re)Mappings
 
@@ -338,7 +338,6 @@
         au FileType go nmap <leader>gb <Plug>(go-build)
         au FileType go nmap <leader>t <Plug>(go-test)
         au FileType go nmap <Leader>d <Plug>(go-doc-vertical)
-        au FileType go nmap <Leader>dd <Plug>(go-def)
         au FileType go nmap <Leader>ds <Plug>(go-def-split)
         au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 
