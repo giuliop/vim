@@ -290,6 +290,7 @@
         nnoremap <leader>ss :SessionSave<CR>
 
     " Syntastic
+         let g:syntastic_always_populate_loc_list = 1
          let g:syntastic_javascript_checker='jshint'
          let g:syntastic_haskell_ghc_mod_args = '-g -fno-warn-missing-signatures' "no missing signature warning
 
