@@ -199,10 +199,7 @@
     nnoremap <Space> @q
 
     " Toggle line numbers and fold column for easy copying
-    nnoremap <leader>3 :setlocal nonumber!<CR>:set foldcolumn=0<CR>
-
-    " Toggle relative and absolute numbering
-    nnoremap <leader>4 :setlocal <c-r>=&number ? "relativenumber" : "number"<CR><CR>
+    nnoremap <leader>3 :setlocal norelativenumber!<CR>:set foldcolumn=0<CR>
 
     " allow the . to execute once for each line of a visual selection
     vnoremap . :normal .<CR>
