@@ -1,5 +1,5 @@
     " General
-            Plugin 'file://' . $HOME . '/.vim' , {'rtp': 'my-vim-bundle/'}
+            Plugin 'giuliop/vim' , {'rtp': 'my-vim-bundle/'}
             Plugin 'scrooloose/nerdtree'
             Plugin 'tpope/vim-surround'
             Plugin 'kien/ctrlp.vim'
