@@ -34,19 +34,15 @@
 "			    with a light-colored background will
 "			    probably want to turn this on.
 " hs_highlight_boolean - Treat True and False as keywords.
+let hs_highlight_boolean = 1 
 " hs_highlight_types - Treat names of primitive types as keywords.
+let hs_highlight_types = 1 
 " hs_highlight_debug - Highlight names of debugging functions.
 " hs_allow_hash_operator - Don't highlight seemingly incorrect C
 "			   preprocessor directives but assume them to be
 "			   operators
 " 
 " 
-
-if version < 600
-  syn clear
-elseif exists("b:current_syntax")
-  finish
-endif
 
 "syntax sync fromstart "mmhhhh.... is this really ok to do so?
 syntax sync linebreaks=15 minlines=50 maxlines=500
@@ -110,16 +106,16 @@ sy keyword hsInfix infix infixl infixr
 sy keyword hsStatement  do case of let in
 sy keyword hsConditional if then else
 
-"if exists("hs_highlight_types")
-  " Primitive types from the standard prelude and libraries.
-  sy match hsType "\<[A-Z]\(\S\&[^,.]\)*\>"
-  sy match hsType "()"
-"endif
+if exists("hs_highlight_types")
+    " Primitive types from the standard prelude and libraries.
+    sy match hsType "\<[A-Z]\(\S\&[^,.]\)*\>"
+    sy match hsType "()"
+endif
 
 " Not real keywords, but close.
 if exists("hs_highlight_boolean")
-  " Boolean constants from the standard prelude.
-  syn keyword hsBoolean True False
+   " Boolean constants from the standard prelude.
+   syn keyword hsBoolean True False
 endif
 
 syn region	hsPackageString	start=+L\="+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end='$' contains=cSpecial contained
@@ -303,7 +299,7 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink hsNumber           Number
   HiLink hsFloat            Float
 
-  HiLink hsLiterateComment		  hsComment
+  HiLink hsLiterateComment	hsComment
   HiLink hsBlockComment     hsComment
   HiLink hsLineComment      hsComment
   HiLink hsModuleCommentA   hsComment
@@ -311,7 +307,7 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink hsComment          Comment
   HiLink hsCommentTodo      Todo
   HiLink hsPragma           SpecialComment
-  HiLink hsBoolean			  Boolean
+  HiLink hsBoolean			Boolean
 
   if exists("hs_highlight_types")
       HiLink hsDelimTypeExport  hsType
